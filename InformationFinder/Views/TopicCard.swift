@@ -12,12 +12,10 @@ struct TopicCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
-            
             VStack {
                 AsyncImage(url: URL(string: topic.imageURL)) { image in
                     image.image?.resizable()
                         .aspectRatio(contentMode: .fill)
-                    
                 }
                 Text(topic.topicName)
                     .bold()
@@ -31,6 +29,6 @@ struct TopicCard: View {
     }
 }
 
-#Preview {
-    TopicCard(topic: Topic(topicName: "Black Hole", isFavourited: true, imageURL: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Black_hole_-_Messier_87_crop_max_res.jpg"))
-}
+//#Preview {
+//    TopicCard(topic: Topic(topicName: "Black Hole", desc: "test Desc", information: "yah", thumbsUp: false, beenSwiped: false, imageURL: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Black_hole_-_Messier_87_crop_max_res.jpg"))
+//}

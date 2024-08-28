@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+class SearchViewModel: ObservableObject {
+    @Published var searchQuery = ""
+    @Published var isActive = false
+}

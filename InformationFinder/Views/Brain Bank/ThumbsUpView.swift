@@ -7,12 +7,20 @@
 
 import SwiftUI
 
+
 struct ThumbsUpView: View {
+    var thumbsedUp: [Topic]
     var body: some View {
-        Text("Thumbs Up")
+        VStack {
+            Text("Thumbs Up")
+            Text("\(thumbsedUp.count)")
+            ForEach(thumbsedUp, id: \.self) { topic in
+                TopicCard(topic: topic)
+            }
+        }
     }
 }
 
-#Preview {
-    ThumbsUpView()
-}
+//#Preview {
+//    ThumbsUpView()
+//}

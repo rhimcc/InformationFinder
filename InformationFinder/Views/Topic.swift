@@ -6,15 +6,23 @@
 //
 
 import Foundation
+import SwiftData
 
+@Model
 class Topic {
     var topicName: String
-    var isFavourited: Bool
+    var thumbsUp: Bool
     var imageURL: String
+    var beenSwiped: Bool
+    var topicDescription: String
+    var topicInfo: String
     
-    init(topicName: String, isFavourited: Bool, imageURL: String){
+    init(topicName: String, topicDescription: String, topicInfo: String, thumbsUp: Bool, beenSwiped: Bool, imageURL: String){
         self.topicName = topicName
-        self.isFavourited = isFavourited
+        self.topicDescription = topicDescription
+        self.topicInfo = topicInfo
+        self.thumbsUp = thumbsUp
+        self.beenSwiped = beenSwiped
         self.imageURL = imageURL
     }
 }

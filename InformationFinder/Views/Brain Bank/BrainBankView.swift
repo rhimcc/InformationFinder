@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct BrainBankView: View {
-    @Query var brainBank: [Topic]
     @State private var tabSelection = 0
     @State private var thumbsUp = true
 
@@ -53,12 +52,12 @@ struct BrainBankView: View {
             }
             
             TabView(selection: $tabSelection) {
-                ThumbsUpView(thumbsedUp: brainBank.filter { $0.thumbsUp })
+                ThumbsUpView(/*thumbsedUp: brainBank.filter { $0.thumbsUp }*/)
                     .tabItem{
                     }
                     .tag(0)
                 
-                ThumbsDownView(thumbsedDown: brainBank.filter { !$0.thumbsUp })
+                ThumbsDownView(/*thumbsedDown: brainBank.filter { !$0.thumbsUp }*/)
                     .tabItem{
                     }
                     .tag(1)

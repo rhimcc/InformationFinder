@@ -11,18 +11,18 @@ import SwiftData
 @Model
 class Topic {
     var topicName: String
-    var thumbsUp: Bool
-    var imageURL: String
-    var beenSwiped: Bool
     var topicDescription: String
     var topicInfo: String
+    var imageURL: String
+    var beenSwiped: Bool
+    var thumbsUp: Bool
     
-    init(topicName: String, topicDescription: String, topicInfo: String, thumbsUp: Bool, beenSwiped: Bool, imageURL: String){
+    init(topicName: String, topicDescription: String, topicInfo: String, imageURL: String, beenSwiped: Bool, thumbsUp: Bool){
         self.topicName = topicName
         self.topicDescription = topicDescription
         self.topicInfo = topicInfo
-        self.thumbsUp = thumbsUp
-        self.beenSwiped = beenSwiped
         self.imageURL = imageURL
+        self.beenSwiped = beenSwiped
+        self.thumbsUp = thumbsUp
     }
 }

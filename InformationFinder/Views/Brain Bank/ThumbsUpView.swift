@@ -9,14 +9,14 @@ import SwiftUI
 
 
 struct ThumbsUpView: View {
-    var thumbsedUp: [Topic]
+//    var thumbsedUp: [Topic]
     var body: some View {
         VStack {
             Text("Thumbs Up")
-            Text("\(thumbsedUp.count)")
-            ForEach(thumbsedUp, id: \.self) { topic in
-                TopicCard(topic: topic)
-            }
+//            Text("\(thumbsedUp.count)")
+//            ForEach(thumbsedUp, id: \.self) { topic in
+//                TopicCard(topic: topic)
+//            }
         }
     }
 }

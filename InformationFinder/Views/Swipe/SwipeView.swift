@@ -14,7 +14,8 @@ struct SwipeView: View {
     var body: some View {
         VStack {
             Button {
-                modelContext.insert(Topic(topicName: "newtopic", topicDescription: "desc", topicInfo: "information", thumbsUp: false, beenSwiped: false, imageURL: "fhuiwjkv"))
+                let newTopic = Topic(topicName: "topic 1", topicDescription: "123", topicInfo: "detailed information", imageURL: "https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg", beenSwiped: false, thumbsUp: true)
+                modelContext.insert(newTopic)
             } label : {
                 Text("New")
             }

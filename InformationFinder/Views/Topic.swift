@@ -13,16 +13,18 @@ class Topic {
     var topicName: String
     var topicDescription: String
     var topicInfo: String
+    var category: String
     var imageURL: String
     var beenSwiped: Bool
     var thumbsUp: Bool
     
-    init(topicName: String, topicDescription: String, topicInfo: String, imageURL: String, beenSwiped: Bool, thumbsUp: Bool){
+    init(topicName: String, topicDescription: String, topicInfo: String, category: String, imageURL: String, beenSwiped: Bool, thumbsUp: Bool){
         self.topicName = topicName
         self.topicDescription = topicDescription
         self.topicInfo = topicInfo
         self.imageURL = imageURL
         self.beenSwiped = beenSwiped
         self.thumbsUp = thumbsUp
+        self.category = category
     }
 }

@@ -9,17 +9,23 @@ import SwiftUI
 
 
 struct ThumbsUpView: View {
-//    var thumbsedUp: [Topic]
+    var thumbsedUp: [Topic]
     var body: some View {
-        VStack {
-            Text("Thumbs Up")
-//            Text("\(thumbsedUp.count)")
-//            ForEach(thumbsedUp, id: \.self) { topic in
-//                TopicCard(topic: topic)
-//            }
+        ScrollView {
+            ForEach(Array(thumbsedUp.enumerated()), id: \.element) { index, topic in
+                NavigationLink {
+                    TopicDetail(topic: topic)
+                } label : {
+                    TopicRow(topic: topic, colour: index % 2 == 0 ? .tan : .lightGreen)
+                        .frame(height: 120)
+                        .padding([.top, .leading, .trailing], 20)
+                    
+                }
+            }
         }
     }
 }
+
 
 //#Preview {
 //    ThumbsUpView()

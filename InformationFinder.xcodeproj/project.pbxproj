@@ -14,7 +14,7 @@
 		9905AE392C70B2B50007FF69 /* InformationFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9905AE382C70B2B50007FF69 /* InformationFinderTests.swift */; };
 		9905AE432C70B2B50007FF69 /* InformationFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9905AE422C70B2B50007FF69 /* InformationFinderUITests.swift */; };
 		9905AE452C70B2B50007FF69 /* InformationFinderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9905AE442C70B2B50007FF69 /* InformationFinderUITestsLaunchTests.swift */; };
-		9905AE522C70B2CF0007FF69 /* BrainBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9905AE512C70B2CF0007FF69 /* BrainBankView.swift */; };
+		9905AE522C70B2CF0007FF69 /* BrainSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9905AE512C70B2CF0007FF69 /* BrainSearchView.swift */; };
 		9905AE562C70B3B10007FF69 /* TopicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9905AE552C70B3B10007FF69 /* TopicCard.swift */; };
 		9905AE582C70B3C40007FF69 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9905AE572C70B3C40007FF69 /* Topic.swift */; };
 		9905AED92C7438B50007FF69 /* Black_hole_-_Messier_87_crop_max_res.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9905AED82C7438B50007FF69 /* Black_hole_-_Messier_87_crop_max_res.jpg */; };
@@ -26,6 +26,11 @@
 		991897482C7F0032000D9EBB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991897472C7F0032000D9EBB /* SearchViewModel.swift */; };
 		9918974A2C7F00BD000D9EBB /* SearchBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991897492C7F00BD000D9EBB /* SearchBaseView.swift */; };
 		9918974C2C7F013C000D9EBB /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9918974B2C7F013C000D9EBB /* SearchResultsView.swift */; };
+		991897522C7FEFFB000D9EBB /* TopicRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991897512C7FEFFB000D9EBB /* TopicRow.swift */; };
+		991897542C7FF729000D9EBB /* ListBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991897532C7FF729000D9EBB /* ListBaseView.swift */; };
+		991897562C7FF733000D9EBB /* BrainBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991897552C7FF733000D9EBB /* BrainBankView.swift */; };
+		991897582C7FF95C000D9EBB /* BrainSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991897572C7FF95C000D9EBB /* BrainSearchResults.swift */; };
+		9918975A2C800093000D9EBB /* TopicDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991897592C800093000D9EBB /* TopicDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +61,7 @@
 		9905AE3E2C70B2B50007FF69 /* InformationFinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InformationFinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9905AE422C70B2B50007FF69 /* InformationFinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationFinderUITests.swift; sourceTree = "<group>"; };
 		9905AE442C70B2B50007FF69 /* InformationFinderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationFinderUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		9905AE512C70B2CF0007FF69 /* BrainBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainBankView.swift; sourceTree = "<group>"; };
+		9905AE512C70B2CF0007FF69 /* BrainSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainSearchView.swift; sourceTree = "<group>"; };
 		9905AE552C70B3B10007FF69 /* TopicCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCard.swift; sourceTree = "<group>"; };
 		9905AE572C70B3C40007FF69 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		9905AED82C7438B50007FF69 /* Black_hole_-_Messier_87_crop_max_res.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Black_hole_-_Messier_87_crop_max_res.jpg"; path = "../../../Downloads/Black_hole_-_Messier_87_crop_max_res.jpg"; sourceTree = "<group>"; };
@@ -68,6 +73,11 @@
 		991897472C7F0032000D9EBB /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		991897492C7F00BD000D9EBB /* SearchBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseView.swift; sourceTree = "<group>"; };
 		9918974B2C7F013C000D9EBB /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
+		991897512C7FEFFB000D9EBB /* TopicRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicRow.swift; sourceTree = "<group>"; };
+		991897532C7FF729000D9EBB /* ListBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBaseView.swift; sourceTree = "<group>"; };
+		991897552C7FF733000D9EBB /* BrainBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainBankView.swift; sourceTree = "<group>"; };
+		991897572C7FF95C000D9EBB /* BrainSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainSearchResults.swift; sourceTree = "<group>"; };
+		991897592C800093000D9EBB /* TopicDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +168,8 @@
 				9905AE272C70B2B40007FF69 /* InformationFinderApp.swift */,
 				9905AE292C70B2B40007FF69 /* ContentView.swift */,
 				9905AE552C70B3B10007FF69 /* TopicCard.swift */,
+				991897512C7FEFFB000D9EBB /* TopicRow.swift */,
+				991897592C800093000D9EBB /* TopicDetail.swift */,
 				9905AE572C70B3C40007FF69 /* Topic.swift */,
 				9918974E2C7F4B41000D9EBB /* Search */,
 				9918974F2C7F4B55000D9EBB /* Brain Bank */,
@@ -180,7 +192,10 @@
 		9918974F2C7F4B55000D9EBB /* Brain Bank */ = {
 			isa = PBXGroup;
 			children = (
-				9905AE512C70B2CF0007FF69 /* BrainBankView.swift */,
+				9905AE512C70B2CF0007FF69 /* BrainSearchView.swift */,
+				991897572C7FF95C000D9EBB /* BrainSearchResults.swift */,
+				991897532C7FF729000D9EBB /* ListBaseView.swift */,
+				991897552C7FF733000D9EBB /* BrainBankView.swift */,
 				991897412C7ED8C8000D9EBB /* ThumbsUpView.swift */,
 				991897432C7ED8D1000D9EBB /* ThumbsDownView.swift */,
 			);
@@ -328,17 +343,22 @@
 			files = (
 				991897482C7F0032000D9EBB /* SearchViewModel.swift in Sources */,
 				991897422C7ED8C8000D9EBB /* ThumbsUpView.swift in Sources */,
+				991897522C7FEFFB000D9EBB /* TopicRow.swift in Sources */,
 				9905AE2A2C70B2B40007FF69 /* ContentView.swift in Sources */,
 				9905AE582C70B3C40007FF69 /* Topic.swift in Sources */,
 				9918974C2C7F013C000D9EBB /* SearchResultsView.swift in Sources */,
-				9905AE522C70B2CF0007FF69 /* BrainBankView.swift in Sources */,
+				9905AE522C70B2CF0007FF69 /* BrainSearchView.swift in Sources */,
 				991897442C7ED8D1000D9EBB /* ThumbsDownView.swift in Sources */,
 				991897402C7ED1C6000D9EBB /* SearchView.swift in Sources */,
 				9918973E2C7ED1C0000D9EBB /* SwipeView.swift in Sources */,
 				9905AE282C70B2B40007FF69 /* InformationFinderApp.swift in Sources */,
 				991897462C7EFFC1000D9EBB /* SuggestedTopicsView.swift in Sources */,
+				9918975A2C800093000D9EBB /* TopicDetail.swift in Sources */,
+				991897542C7FF729000D9EBB /* ListBaseView.swift in Sources */,
+				991897562C7FF733000D9EBB /* BrainBankView.swift in Sources */,
 				9905AE562C70B3B10007FF69 /* TopicCard.swift in Sources */,
 				9918974A2C7F00BD000D9EBB /* SearchBaseView.swift in Sources */,
+				991897582C7FF95C000D9EBB /* BrainSearchResults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

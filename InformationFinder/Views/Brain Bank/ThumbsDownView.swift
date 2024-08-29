@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ThumbsDownView: View {
-//    var thumbsedDown: [Topic]
+    var thumbsedDown: [Topic]
     var body: some View {
-        VStack {
-            Text("Thumbs Down:")
-//            Text("\(thumbsedDown.count)")
-//            ForEach(thumbsedDown, id: \.self) { topic in
-//                TopicCard(topic: topic)
-//            }
+        ScrollView {
+            ForEach(Array(thumbsedDown.enumerated()), id: \.element) { index, topic in
+                NavigationLink {
+                    TopicDetail(topic: topic)
+                } label : {
+                    TopicRow(topic: topic, colour: index % 2 == 0 ? .tan : .lightGreen)
+                        .frame(height: 120)
+                        .padding([.top, .leading, .trailing], 20)
+                    
+                }
+            }
         }
     }
 }

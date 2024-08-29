@@ -12,6 +12,8 @@ struct TopicCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
+                .background(.white)
+                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
             VStack {
                 AsyncImage(url: URL(string: topic.imageURL)) { image in
                     image.image?.resizable()

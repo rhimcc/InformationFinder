@@ -15,14 +15,18 @@ struct ListBaseView: View {
     var body: some View {
         VStack {
             ZStack {
-                RoundedRectangle(cornerRadius: 25.0)
-                
-                    .fill(.darkGreen)
-                
-                Text("BRAIN BANK")
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.tan)
+                HStack {
+                    Image(systemName: "brain")
+                        .foregroundColor(.darkGreen)
+                        .font(.system(size: 50))
+                        .padding(.trailing, 20)
+                    Text("BRAIN BANK")
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(.darkGreen)
+                    
+                    
+                }
             }.frame(width: UIScreen.main.bounds.width - 40, height: 100)
                 .padding([.trailing, .leading], 20)
             

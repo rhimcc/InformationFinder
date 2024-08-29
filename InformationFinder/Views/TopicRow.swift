@@ -5,17 +5,20 @@ struct TopicRow: View {
     var colour: Color
 
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 25.0)
-                .foregroundColor(colour)
-                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 4)
-                .padding(.bottom, 4)
+//        ZStack {
+//            RoundedRectangle(cornerRadius: 25.0)
+//                .foregroundColor(colour)
+//                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 4)
+//                .padding(.bottom, 4)
             
-            HStack {
+            HStack(alignment: .center) {
                 AsyncImage(url: URL(string: topic.imageURL)) { image in
                     image.image?.resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100, height: 100)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 120, height: 120)
+                        .clipped()
+                    
                 }
                 VStack(alignment: .leading) {
                     Text(topic.topicName)
@@ -30,8 +33,7 @@ struct TopicRow: View {
                 VStack {
                     Button {
                         topic.thumbsUp.toggle()
-                        
-                    } label : {
+                    } label: {
                         Image(systemName: topic.thumbsUp ? "hand.thumbsup.fill" : "hand.thumbsdown.fill")
                             .foregroundColor(.darkGreen)
                             .font(.system(size: 30))
@@ -39,15 +41,20 @@ struct TopicRow: View {
                     HStack {
                         Text("READ NOW")
                         Image(systemName: "arrowtriangle.right")
-                        
                     }
                     .padding([.top], 15)
                     .font(.system(size: 15, weight: .bold))
                     .foregroundColor(.darkGreen)
                 }
+                .padding()
+
             }
-            .padding()
+            .frame(height: 120)
+            .background(colour)
+            .cornerRadius(6)
+            .shadow(color: .black.opacity(0.33), radius: 1, x: 2, y: 2)
+            .padding(.vertical, 2)
         }
-        .padding([.top, .leading, .trailing], 10)
-    }
+      
+    
 }

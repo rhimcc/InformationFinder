@@ -17,8 +17,7 @@ struct ThumbsUpView: View {
                     TopicDetail(topic: topic)
                 } label : {
                     TopicRow(topic: topic, colour: index % 2 == 0 ? .tan : .lightGreen)
-                        .frame(height: 120)
-                        .padding([.top, .leading, .trailing], 20)
+                        .padding([.top, .leading, .trailing], 10)
                     
                 }
             }

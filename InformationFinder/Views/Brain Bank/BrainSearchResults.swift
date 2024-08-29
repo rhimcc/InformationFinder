@@ -22,7 +22,6 @@ struct BrainSearchResults: View {
     var body: some View {
         ForEach(Array(filteredTopics.enumerated()), id: \.element) { index, topic in
             TopicRow(topic: topic, colour: index % 2 == 0 ? .tan : .lightGreen)
-                .frame(height: 120)
                 .padding([.top, .leading, .trailing], 20)
         }
     }

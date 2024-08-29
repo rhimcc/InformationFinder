@@ -17,6 +17,16 @@ class Topic {
     var imageURL: String
     var beenSwiped: Bool
     var thumbsUp: Bool
+    var wordCount: Int {
+        let components = self.topicInfo.components(separatedBy: .whitespacesAndNewlines)
+        let wordCount = components.count
+        return wordCount
+    }
+    
+    var calculatedTime: Int {
+        let time = (Double(wordCount) / 250.0).rounded()
+        return Int(time)
+    }
     
     init(topicName: String, topicDescription: String, topicInfo: String, category: String, imageURL: String, beenSwiped: Bool, thumbsUp: Bool){
         self.topicName = topicName
@@ -27,4 +37,5 @@ class Topic {
         self.thumbsUp = thumbsUp
         self.category = category
     }
+    
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SearchBaseView: View {
+    var topics: [Topic]
     @StateObject private var searchViewModel: SearchViewModel = SearchViewModel()
     var body: some View {
         NavigationStack {
@@ -24,6 +25,6 @@ struct SearchBaseView: View {
     }
 }
 
-#Preview {
-    SearchBaseView()
-}
+//#Preview {
+//    SearchBaseView()
+//}

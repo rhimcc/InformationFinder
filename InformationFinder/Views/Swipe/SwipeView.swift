@@ -9,22 +9,44 @@ import SwiftUI
 import SwiftData
 
 struct SwipeView: View {
-    @Query var topics: [Topic]
+//    var topics: Topics
     @Environment(\.modelContext) private var modelContext
-    var body: some View {
-        VStack {
-            Button {
-                let newTopic = Topic(topicName: "topic 1", topicDescription: "This is a brief description of the topic, potentially punny", topicInfo: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,", category: "Science", imageURL: "https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg", beenSwiped: false, thumbsUp: true)
-                modelContext.insert(newTopic)
-            } label : {
-                Text("New")
-            }
-            Button {
+    @Query var topicList: [Topic]
 
-                
-            } label : {
-                Text("Delete")
+
+    @State private var swipeRight: Bool = false
+     var cardWidth = 300
+     var cardHeight = 500
+    @State private var cardPosition: CGFloat = UIScreen.main.bounds.width / 2
+
+    var body: some View {
+        var topicViewModel: TopicViewModel = TopicViewModel(topicList: topicList)
+        VStack {
+            ZStack {
+                ForEach(Array(topicViewModel.unswipedTopics.enumerated()), id: \.element) { index, topic in
+                    TopicCard(topicViewModel: topicViewModel, cardIndex: index, cardPosition: $cardPosition)
+                        .frame(width: 300, height: 500)
+                        .aspectRatio(CGSize(width: 9, height: 16), contentMode: .fit)
+                        .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
+                        .position(x: cardPosition, y: 300)
+                }
             }
+            Button {
+                modelContext.insert(Topic(topicName: "String", topicDescription: "String", topicInfo: "String", category: "String", imageURL: "String"))
+            } label : {
+                Text("Add")
+            }
+            Button {
+                for topic in topicList {
+                    modelContext.delete(topic)
+                }
+            } label : {
+                Text("Delete all")
+            }
+             
+        }.onAppear() {
+            print(topicViewModel.unswipedTopics)
+        }
         }
     }
-}
+

@@ -31,6 +31,10 @@
 		991897562C7FF733000D9EBB /* BrainBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991897552C7FF733000D9EBB /* BrainBankView.swift */; };
 		991897582C7FF95C000D9EBB /* BrainSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991897572C7FF95C000D9EBB /* BrainSearchResults.swift */; };
 		9918975A2C800093000D9EBB /* TopicDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991897592C800093000D9EBB /* TopicDetail.swift */; };
+		99AC814A2C816FF500593227 /* SwipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AC81492C816FF500593227 /* SwipeViewModel.swift */; };
+		99AC814C2C817AC500593227 /* Topics.json in Resources */ = {isa = PBXBuildFile; fileRef = 99AC814B2C817AC500593227 /* Topics.json */; };
+		99AC81502C817BDE00593227 /* Topics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AC814F2C817BDE00593227 /* Topics.swift */; };
+		99AC81522C81967800593227 /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AC81512C81967800593227 /* TopicViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +82,10 @@
 		991897552C7FF733000D9EBB /* BrainBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainBankView.swift; sourceTree = "<group>"; };
 		991897572C7FF95C000D9EBB /* BrainSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainSearchResults.swift; sourceTree = "<group>"; };
 		991897592C800093000D9EBB /* TopicDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetail.swift; sourceTree = "<group>"; };
+		99AC81492C816FF500593227 /* SwipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewModel.swift; sourceTree = "<group>"; };
+		99AC814B2C817AC500593227 /* Topics.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Topics.json; sourceTree = "<group>"; };
+		99AC814F2C817BDE00593227 /* Topics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topics.swift; sourceTree = "<group>"; };
+		99AC81512C81967800593227 /* TopicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +138,7 @@
 			children = (
 				9918974D2C7F4B26000D9EBB /* Views */,
 				991897472C7F0032000D9EBB /* SearchViewModel.swift */,
+				99AC814B2C817AC500593227 /* Topics.json */,
 				9905AE2B2C70B2B40007FF69 /* Assets.xcassets */,
 				9905AED82C7438B50007FF69 /* Black_hole_-_Messier_87_crop_max_res.jpg */,
 				9905AE2D2C70B2B40007FF69 /* Preview Content */,
@@ -168,9 +177,11 @@
 				9905AE272C70B2B40007FF69 /* InformationFinderApp.swift */,
 				9905AE292C70B2B40007FF69 /* ContentView.swift */,
 				9905AE552C70B3B10007FF69 /* TopicCard.swift */,
+				99AC81512C81967800593227 /* TopicViewModel.swift */,
 				991897512C7FEFFB000D9EBB /* TopicRow.swift */,
 				991897592C800093000D9EBB /* TopicDetail.swift */,
 				9905AE572C70B3C40007FF69 /* Topic.swift */,
+				99AC814F2C817BDE00593227 /* Topics.swift */,
 				9918974E2C7F4B41000D9EBB /* Search */,
 				9918974F2C7F4B55000D9EBB /* Brain Bank */,
 				991897502C7F4B74000D9EBB /* Swipe */,
@@ -206,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				9918973D2C7ED1C0000D9EBB /* SwipeView.swift */,
+				99AC81492C816FF500593227 /* SwipeViewModel.swift */,
 			);
 			path = Swipe;
 			sourceTree = "<group>";
@@ -315,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9905AE2F2C70B2B40007FF69 /* Preview Assets.xcassets in Resources */,
+				99AC814C2C817AC500593227 /* Topics.json in Resources */,
 				9905AE2C2C70B2B40007FF69 /* Assets.xcassets in Resources */,
 				9905AED92C7438B50007FF69 /* Black_hole_-_Messier_87_crop_max_res.jpg in Resources */,
 			);
@@ -352,11 +365,14 @@
 				991897402C7ED1C6000D9EBB /* SearchView.swift in Sources */,
 				9918973E2C7ED1C0000D9EBB /* SwipeView.swift in Sources */,
 				9905AE282C70B2B40007FF69 /* InformationFinderApp.swift in Sources */,
+				99AC814A2C816FF500593227 /* SwipeViewModel.swift in Sources */,
 				991897462C7EFFC1000D9EBB /* SuggestedTopicsView.swift in Sources */,
+				99AC81522C81967800593227 /* TopicViewModel.swift in Sources */,
 				9918975A2C800093000D9EBB /* TopicDetail.swift in Sources */,
 				991897542C7FF729000D9EBB /* ListBaseView.swift in Sources */,
 				991897562C7FF733000D9EBB /* BrainBankView.swift in Sources */,
 				9905AE562C70B3B10007FF69 /* TopicCard.swift in Sources */,
+				99AC81502C817BDE00593227 /* Topics.swift in Sources */,
 				9918974A2C7F00BD000D9EBB /* SearchBaseView.swift in Sources */,
 				991897582C7FF95C000D9EBB /* BrainSearchResults.swift in Sources */,
 			);

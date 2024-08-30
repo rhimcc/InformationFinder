@@ -24,8 +24,6 @@ struct ListBaseView: View {
                         .font(.title)
                         .bold()
                         .foregroundColor(.darkGreen)
-                    
-                    
                 }
             }.frame(width: UIScreen.main.bounds.width - 40, height: 100)
                 .padding([.trailing, .leading], 20)

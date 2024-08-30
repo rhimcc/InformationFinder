@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     @State private var tabSelection = 1
+    @Environment(\.modelContext) private var modelContext
+    @Query private var topicList: [Topic]
+    private var topics: Topics = Topics()
     var body: some View {
         TabView(selection: $tabSelection) {
-            SearchBaseView()
+            SearchBaseView(topics: topicList)
                 .tabItem{
                     Label("Search", systemImage: "magnifyingglass")
                 }
@@ -24,14 +28,38 @@ struct ContentView: View {
                 }
                 .tag(1)
             
-            BrainBankView()
+            BrainBankView(topics: topics)
                 .tabItem {
                     Label("Brain Bank", systemImage: "brain")
                 }
                 .tag(2)
         }
+        .onAppear {
+            topics.loadTopicList(fromName: "Topics")
+            if topicList.isEmpty {
+                for topic in topics.topicList {
+                    modelContext.insert(topic)
+                }
+            }
+            for topic in topics.topicList {
+                var topicIn: Bool = false
+                for topicCheck in topicList {
+                    if topicCheck.topicName == topic.topicName {
+                        topicIn = true
+                    }
+                }
+                if !topicIn {
+                    modelContext.insert(topic)
+                }
+            }
+//            for topic in topicList {
+//                print("\(topic.topicName) is in the modelContext list")
+//            }
+        }
     }
 }
+
+
 
 #Preview {
     ContentView()

@@ -12,5 +12,12 @@
         "topicInfo": "Information",
         "category": "Category",
         "imageURL": "URL",
+    },
+    {
+        "topicName": "Epigenetics",
+        "topicDescription": "Genetic markers which change how your body uses proteins",
+        "topicInfo": "Find more information here:",
+        "category": "Science",
+        "imageURL": "URL",
     }
 ]

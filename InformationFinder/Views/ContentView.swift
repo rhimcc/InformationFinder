@@ -52,9 +52,7 @@ struct ContentView: View {
                     modelContext.insert(topic)
                 }
             }
-//            for topic in topicList {
-//                print("\(topic.topicName) is in the modelContext list")
-//            }
+
         }
     }
 }

@@ -75,10 +75,15 @@ struct TopicCard: View {
         .frame(width: cardWidth, height: cardHeight)
         .offset(x: offset)
         .gesture(dragGesture)
+        .onAppear {
+            print("card index ", cardIndex)
+            print("card at card index is ", topicList[cardIndex].topicName)
+        }
 //        .onAppear {
 //            topicViewModel.setActiveTopic(topic: topic)
 //        }
     }
+       
 }
 
 //#Preview {

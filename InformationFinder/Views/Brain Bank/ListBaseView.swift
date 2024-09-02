@@ -53,12 +53,12 @@ struct ListBaseView: View {
             }.padding([.top], 20)
             
             TabView(selection: $tabSelection) {
-                ThumbsUpView(thumbsedUp: brainBank.filter { $0.thumbsUp })
+                ThumbsUpView(thumbsedUp: brainBank.filter { $0.thumbsUp && $0.beenSwiped })
                     .tabItem{
                     }
                     .tag(0)
                 
-                ThumbsDownView(thumbsedDown: brainBank.filter { !$0.thumbsUp })
+                ThumbsDownView(thumbsedDown: brainBank.filter { !$0.thumbsUp && $0.beenSwiped})
                     .tabItem{
                     }
                     .tag(1)

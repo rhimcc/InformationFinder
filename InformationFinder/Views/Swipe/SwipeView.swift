@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct SwipeView: View {
-//    var topics: Topics
     @Environment(\.modelContext) private var modelContext
     @Query var topicList: [Topic]
 
@@ -20,11 +19,12 @@ struct SwipeView: View {
     @State private var cardPosition: CGFloat = UIScreen.main.bounds.width / 2
 
     var body: some View {
-        var topicViewModel: TopicViewModel = TopicViewModel(topicList: topicList)
+        let topicViewModel: TopicViewModel = TopicViewModel(topicList: topicList)
+        let unswipedTopics = topicViewModel.getUnswipedTopics()
         VStack {
             ZStack {
-                ForEach(Array(topicViewModel.unswipedTopics.enumerated()), id: \.element) { index, topic in
-                    TopicCard(topicViewModel: topicViewModel, cardIndex: index, cardPosition: $cardPosition)
+                ForEach(unswipedTopics) { topic in
+                    TopicCard(topicViewModel: topicViewModel, cardIndex: topicViewModel.getIndexOfTopic(topic: topic) ?? 0, cardPosition: $cardPosition)
                         .frame(width: 300, height: 500)
                         .aspectRatio(CGSize(width: 9, height: 16), contentMode: .fit)
                         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
@@ -44,9 +44,7 @@ struct SwipeView: View {
                 Text("Delete all")
             }
              
-        }.onAppear() {
-            print(topicViewModel.unswipedTopics)
         }
-        }
+    }
     }
 

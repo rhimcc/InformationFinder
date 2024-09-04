@@ -10,7 +10,6 @@ import SwiftData
 
 class Topics {
     @Published var topicList: [Topic] = []
-//    private var stringArray: [[String: Any]] = []
 
     func loadTopicList(fromName name: String) {
             if let bundlePath = Bundle.main.path(forResource: name, ofType: "json") {
@@ -26,7 +25,6 @@ class Topics {
                 print("Failed to find the file in the bundle.")
             }
         }
- 
 }
 
 

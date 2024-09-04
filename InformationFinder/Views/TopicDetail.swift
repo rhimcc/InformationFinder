@@ -30,8 +30,6 @@ struct TopicDetail: View {
                                 .font(.system(size: 35))
                                 .foregroundColor(.darkGreen)
                         }
-                        
-                        
                     }.position(x: UIScreen.main.bounds.width - 50, y: 50)
 
                   
@@ -57,7 +55,7 @@ struct TopicDetail: View {
 
                 }.foregroundColor(.gray)
               
-                Text(topic.topicInfo)
+                Text(.init(topic.topicInfo))
                     .padding(20)
 
                 

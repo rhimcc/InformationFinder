@@ -11,8 +11,6 @@ import SwiftData
 struct SwipeView: View {
     @Environment(\.modelContext) private var modelContext
     @Query var topicList: [Topic]
-
-
     @State private var swipeRight: Bool = false
      var cardWidth = 300
      var cardHeight = 500
@@ -31,11 +29,7 @@ struct SwipeView: View {
                         .position(x: cardPosition, y: 300)
                 }
             }
-            Button {
-                modelContext.insert(Topic(topicName: "String", topicDescription: "String", topicInfo: "String", category: "String", imageURL: "String"))
-            } label : {
-                Text("Add")
-            }
+            
             Button {
                 for topic in topicList {
                     modelContext.delete(topic)

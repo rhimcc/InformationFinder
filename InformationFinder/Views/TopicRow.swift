@@ -5,11 +5,6 @@ struct TopicRow: View {
     var colour: Color
 
     var body: some View {
-//        ZStack {
-//            RoundedRectangle(cornerRadius: 25.0)
-//                .foregroundColor(colour)
-//                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 4)
-//                .padding(.bottom, 4)
             
             HStack(alignment: .center) {
                 AsyncImage(url: URL(string: topic.imageURL)) { image in

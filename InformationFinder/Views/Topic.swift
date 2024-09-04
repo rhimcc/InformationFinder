@@ -17,6 +17,9 @@ class Topic: Decodable {
     var imageURL: String
     var beenSwiped: Bool
     var thumbsUp: Bool
+    var imageCredit: String
+    var read: Bool
+    
     var wordCount: Int {
         let components = self.topicInfo.components(separatedBy: .whitespacesAndNewlines)
         let wordCount = components.count
@@ -28,7 +31,7 @@ class Topic: Decodable {
         return Int(time)
     }
     
-    init(topicName: String, topicDescription: String, topicInfo: String, category: String, imageURL: String){
+    init(topicName: String, topicDescription: String, topicInfo: String, category: String, imageURL: String, imageCredit: String){
         self.topicName = topicName
         self.topicDescription = topicDescription
         self.topicInfo = topicInfo
@@ -36,6 +39,8 @@ class Topic: Decodable {
         self.beenSwiped = false
         self.thumbsUp = false
         self.category = category
+        self.imageCredit = imageCredit
+        self.read = false
     }
     
     required init(from decoder: Decoder) throws {
@@ -47,15 +52,17 @@ class Topic: Decodable {
             self.imageURL = try container.decode(String.self, forKey: .imageURL)
             self.thumbsUp = false
             self.beenSwiped = false
+            self.imageCredit = try container.decode(String.self, forKey: .imageCredit)
+            self.read = false
         }
         
-        // Define coding keys that map to the JSON keys
         enum CodingKeys: String, CodingKey {
             case topicName
             case topicDescription
             case topicInfo
             case category
             case imageURL
+            case imageCredit
         }
     
     

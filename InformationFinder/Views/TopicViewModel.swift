@@ -16,7 +16,6 @@ struct TopicViewModel {
         var unswipedTopics: [Topic] = []
         for topic in topicList {
             if !topic.beenSwiped {
-                print("\(topic.topicName) has not been swiped")
                 unswipedTopics.append(topic)
             }
         }
@@ -32,7 +31,6 @@ struct TopicViewModel {
                 index+=1
             }
         }
-        print("topic not found")
         return nil
     }
 

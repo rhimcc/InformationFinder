@@ -15,17 +15,12 @@ struct TopicCard: View {
         DragGesture()
             .onChanged { value in
                 offset = value.translation.width
-                print(offset)
             }
             .onEnded { _ in
                 let screenWidth = UIScreen.main.bounds.width
                 if offset > 20 {
-                    
                     topicList[cardIndex].thumbsUp = true
                     topicList[cardIndex].beenSwiped = true
-
-                    print("\(topicList[cardIndex].topicName) has been swiped right")
-
                     withAnimation {
                         offset = screenWidth
                     }
@@ -33,7 +28,6 @@ struct TopicCard: View {
                     if offset < -20 {
                         topicList[cardIndex].thumbsUp = false
                         topicList[cardIndex].beenSwiped = true
-                        print("\(topicList[cardIndex].topicName) has been swiped left")
 
                         withAnimation {
                             offset = -screenWidth
@@ -49,19 +43,22 @@ struct TopicCard: View {
     
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(.darkGreen)
-                .cornerRadius(30)
-                .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
+
 
             VStack {
                 AsyncImage(url: URL(string: topicList[cardIndex].imageURL)) { image in
                     image.image?
                         .resizable()
-                        .scaledToFill()
+                        .aspectRatio(contentMode: .fill)
                         .frame(width: cardWidth, height: cardWidth)
                         .clipped()
                         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
+                        .mask{
+                            Rectangle()
+//                                .fill(.darkGreen)
+                                .cornerRadius(30)
+                                .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
+                        }
                 }
                 
                 Text(topicList[cardIndex].topicName)
@@ -75,10 +72,10 @@ struct TopicCard: View {
         .frame(width: cardWidth, height: cardHeight)
         .offset(x: offset)
         .gesture(dragGesture)
-        .onAppear {
-            print("card index ", cardIndex)
-            print("card at card index is ", topicList[cardIndex].topicName)
-        }
+//        .onAppear {
+//            print("card index ", cardIndex)
+//            print("card at card index is ", topicList[cardIndex].topicName)
+//        }
 //        .onAppear {
 //            topicViewModel.setActiveTopic(topic: topic)
 //        }

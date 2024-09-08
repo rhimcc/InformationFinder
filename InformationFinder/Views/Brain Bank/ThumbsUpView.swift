@@ -16,7 +16,7 @@ struct ThumbsUpView: View {
                 NavigationLink {
                     TopicDetail(topic: topic)
                 } label : {
-                    TopicRow(topic: topic, colour: index % 2 == 0 ? .tan : .lightGreen)
+                    TopicRow(topic: topic, colour: index % 2 == 0 ? .midGreen : .lightGreen)
                         .padding([.top, .leading, .trailing], 10)
                     
                 }

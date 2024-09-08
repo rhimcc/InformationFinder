@@ -4,13 +4,12 @@ import SwiftData
 struct TopicCard: View {
     var topicViewModel: TopicViewModel
     @Query var topicList: [Topic]
-//    var topic: Topic
     var cardWidth: CGFloat = 300
     var cardHeight: CGFloat = 500
     var cardIndex: Int
     @State private var offset = CGFloat.zero
     @Binding var cardPosition: CGFloat
-    
+
     private var dragGesture: some Gesture {
         DragGesture()
             .onChanged { value in
@@ -18,71 +17,51 @@ struct TopicCard: View {
             }
             .onEnded { _ in
                 let screenWidth = UIScreen.main.bounds.width
-                if offset > 20 {
-                    topicList[cardIndex].thumbsUp = true
-                    topicList[cardIndex].beenSwiped = true
-                    withAnimation {
+                withAnimation {
+                    if offset > 50 {
+                        topicList[cardIndex].thumbsUp = true
+                        topicList[cardIndex].beenSwiped = true
                         offset = screenWidth
-                    }
-                } else {
-                    if offset < -20 {
+                    } else if offset < -50 {
                         topicList[cardIndex].thumbsUp = false
                         topicList[cardIndex].beenSwiped = true
-
-                        withAnimation {
-                            offset = -screenWidth
-                        }
+                        offset = -screenWidth
                     } else {
-                        withAnimation {
-                            offset = 0
-                        }
+                        offset = 0
                     }
                 }
             }
     }
-    
+
     var body: some View {
         ZStack {
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color.green.opacity(0.9))
+                .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
+                .frame(width: cardWidth, height: cardHeight)
 
-
-            VStack {
+            VStack(spacing: 0) {  // Set spacing to 0 so that image and text are tightly aligned
                 AsyncImage(url: URL(string: topicList[cardIndex].imageURL)) { image in
-                    image.image?
+                    image.image?.resizable()
                         .resizable()
-                        .aspectRatio(contentMode: .fill)
+                        .scaledToFill()
                         .frame(width: cardWidth, height: cardWidth)
                         .clipped()
-                        .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
-                        .mask{
-                            Rectangle()
-//                                .fill(.darkGreen)
-                                .cornerRadius(30)
-                                .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
-                        }
+                    
                 }
                 
                 Text(topicList[cardIndex].topicName)
-                    .bold()
-                    .font(.system(size: 20))
+                    .font(.headline)
                     .foregroundColor(.white)
-                    .padding(.top, 20)
+                    .padding()
+                    .frame(maxWidth: .infinity) // Ensure the text spans the full width of the card
+
+                Spacer()
             }
-            .padding()
+            .frame(width: cardWidth, height: cardHeight)
+            .clipShape(RoundedRectangle(cornerRadius: 20)) // Apply corner radius to the entire content of the card
         }
-        .frame(width: cardWidth, height: cardHeight)
         .offset(x: offset)
         .gesture(dragGesture)
-//        .onAppear {
-//            print("card index ", cardIndex)
-//            print("card at card index is ", topicList[cardIndex].topicName)
-//        }
-//        .onAppear {
-//            topicViewModel.setActiveTopic(topic: topic)
-//        }
     }
-       
 }
-
-//#Preview {
-//    TopicCard(topic: Topic(topicName: "Name", topicDescription: "Description", topicInfo: "Information", category: "Category", imageURL: "url", beenSwiped: false, thumbsUp: true), cardPosition: .constant(UIScreen.main.bounds.width/2))
-//}

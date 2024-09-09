@@ -3,12 +3,13 @@ import SwiftUI
 struct TopicDetail: View {
     @State private var scrollPosition: CGFloat = 0
     @State private var scrollHeight: CGFloat = 1 // Initialize with a small positive value to avoid division by zero
+    @State private var topContentHeight: CGFloat = 0
     @State private var contentHeight: CGFloat = 0
 
     var topic: Topic
 
     var body: some View {
-        ZStack {
+        VStack {
             ScrollView {
                 VStack {
                     ZStack {
@@ -58,40 +59,49 @@ struct TopicDetail: View {
                         Text("~ \(topic.calculatedTime) minutes")
                     }
                     .foregroundColor(.gray)
-
-                    Text(.init(topic.topicInfo))
-                        .padding(20)
-
-                    Button("Done") {
-                        // Button action
-                    }
                 }
                 .background(GeometryReader { geometry in
                     Color.clear
                         .onAppear {
-                            contentHeight = geometry.size.height
-                            scrollHeight = max(contentHeight, UIScreen.main.bounds.height)
-                            print("Content Height on Appear: \(contentHeight)")
-                            print("Scroll Height on Appear: \(scrollHeight)")
-                        }
-                        .onChange(of: geometry.size.height) { newHeight in
-                            contentHeight = newHeight
-                            scrollHeight = max(contentHeight, UIScreen.main.bounds.height)
-                            print("Content Height on Change: \(contentHeight)")
-                            print("Scroll Height on Change: \(scrollHeight)")
-                        }
-                        .onChange(of: geometry.frame(in: .global).origin.y) { newY in
-                            let scrollOffset = -newY
-                            scrollPosition = min(max(scrollOffset, 0), scrollHeight - UIScreen.main.bounds.height)
-                            print("Scroll Position: \(scrollPosition)")
+                            // Capture the height of the non-scrollable top content
+                            topContentHeight = geometry.size.height
                         }
                 })
+
+                // This is the scrollable content that will be tracked
+                Text(.init(topic.topicInfo))
+                    .padding(20)
+                    .background(GeometryReader { geometry in
+                        Color.clear
+                            .onAppear {
+                                // Set content height for the scrollable area
+                                contentHeight = geometry.size.height
+                                scrollHeight = topContentHeight + contentHeight
+                            }
+
+                            .onChange(of: geometry.frame(in: .global).origin.y) { newY in
+                                let scrollOffset = -(newY - topContentHeight) // Account for topContentHeight
+                                scrollPosition = min(max(scrollOffset, 0), contentHeight - UIScreen.main.bounds.height)
+                            }
+                    })
             }
-            .coordinateSpace(name: "scroll")
             .background(.tan)
 
-            ProgressView(value: Float(scrollPosition), total: Float(scrollHeight - UIScreen.main.bounds.height))
-                
+            // Progress View
+            HStack {
+                ProgressView(value: Float(scrollPosition), total: Float(contentHeight - UIScreen.main.bounds.height))
+                    .tint(.darkGreen)
+                    .background(.tan)
+                    .padding(.horizontal, 10)
+
+                Text("\(getPercentage())%")
+            }
+            .padding(.top, 10)
         }
+    }
+
+    func getPercentage() -> Int {
+        let progressRatio = scrollPosition / (contentHeight - UIScreen.main.bounds.height)
+        return Int(progressRatio * 100)
     }
 }

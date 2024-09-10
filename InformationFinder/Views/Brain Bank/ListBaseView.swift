@@ -7,68 +7,68 @@ struct ListBaseView: View {
     @Query private var topics: [Topic]
     @State private var tabSelection = 0
     @State private var thumbsUp = true
-
+    
     var body: some View {
-        VStack {
-            ZStack {
-                HStack {
-                    Image(systemName: "brain")
-                        .foregroundColor(.darkGreen)
-                        .font(.system(size: 50))
-                        .padding(.trailing, 20)
-                    Text("BRAIN BANK")
-                        .font(.title)
-                        .bold()
-                        .foregroundColor(.darkGreen)
+        ZStack {
+            Color.tan
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(Array(searchViewModel.thumbsOptions.keys), id: \.self) { option in
+                            Button {
+                                searchViewModel.thumbsOptions[option]?.toggle()
+                            } label: {
+                                FilterBubble(filterName: option, isSelected: searchViewModel.thumbsOptions[option] ?? true)
+                                
+                            }
+                        }
+                        ForEach(Array(searchViewModel.readOptions.keys), id: \.self) { option in
+                            Button {
+                                searchViewModel.readOptions[option]?.toggle()
+                            } label: {
+                                FilterBubble(filterName: option, isSelected: searchViewModel.readOptions[option] ?? true)
+                                
+                            }
+                        }
+                    }.padding(.horizontal, 10)
+                }
+                
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(Array(searchViewModel.selectedCategories.keys), id: \.self) { option in
+                            Button {
+                                searchViewModel.selectedCategories[option]?.toggle()
+                            } label: {
+                                FilterBubble(filterName: option, isSelected: searchViewModel.selectedCategories[option] ?? true)
+                                
+                            }
+                        }
+                    }.padding(.horizontal, 10)
+                }
+                
+                ScrollView {
+                    ForEach(Array(searchViewModel.filteredTopics.enumerated()), id: \.element) { index, topic in
+                        NavigationLink {
+                            TopicDetail(topic: topic)
+                        } label : {
+                            TopicRow(topic: topic, colour: index % 2 == 0 ? .midGreen : .lightGreen)
+                                .padding([.top, .leading, .trailing], 10)
+                            
+                        }
+                    }
                 }
             }
-            .frame(width: UIScreen.main.bounds.width - 40, height: 100)
-            .padding([.trailing, .leading], 20)
-
-            HStack {
-                Button("Print topicList") {
-                    print(searchViewModel.filteredTopics)
-                }
-                Spacer()
-
-                Button {
-                    thumbsUp = true
-                    tabSelection = 0
-                } label: {
-                    Label("", systemImage: tabSelection == 0 ? "hand.thumbsup.fill" : "hand.thumbsup")
-                        .foregroundColor(.darkGreen)
-                }
-                .font(.system(size: 30))
-                Spacer()
-                Spacer()
-
-                Button {
-                    thumbsUp = false
-                    tabSelection = 1
-                } label: {
-                    Label("", systemImage: tabSelection == 1 ? "hand.thumbsdown.fill" : "hand.thumbsdown")
-                        .foregroundColor(.darkGreen)
-                }
-                .font(.system(size: 30))
-                Spacer()
-
-            }
-            .padding([.top], 20)
-
-            TabView(selection: $tabSelection) {
-                ThumbsUpView(thumbsedUp: searchViewModel.filteredTopics.filter { $0.thumbsUp && $0.beenSwiped })
-                    .tabItem{}
-                    .tag(0)
-
-                ThumbsDownView(thumbsedDown: searchViewModel.filteredTopics.filter { !$0.thumbsUp && $0.beenSwiped})
-                    .tabItem{}
-                    .tag(1)
-            }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        }
+            
+            
+        
         .onAppear {
             searchViewModel.topics = topics
             searchViewModel.applyFilters()
         }
+        .padding(.top, 0)
+
+    }
+        
     }
 }

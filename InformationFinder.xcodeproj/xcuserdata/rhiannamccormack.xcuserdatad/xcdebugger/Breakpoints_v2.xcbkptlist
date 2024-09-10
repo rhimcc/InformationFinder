@@ -62,10 +62,10 @@
             filePath = "InformationFinder/SearchViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "selectedCategories"
-            landmarkType = "24">
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "applyFilters()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

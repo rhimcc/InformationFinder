@@ -15,64 +15,38 @@ struct BrainSearchView: View {
             }
         }
         return categories
-        
     }
     
+
+    
     var body: some View {
-        HStack {
-            TextField("Search...", text: $searchViewModel.searchQuery)
-                .padding(10)
-                .textFieldStyle(.roundedBorder)
-                .focused($searchActive)
-                .onChange(of: searchActive) { value in
-                    searchViewModel.isActive = value
-                }
-
-            if searchActive {
-                Button("Cancel") {
-                    searchActive = false
-                }
-                .padding(10)
-
-            } else {
-                Button {
-                    showingFilters.toggle()
-                } label: {
-                    Image(systemName: "slider.horizontal.3")
+        VStack {
+            HStack {
+                Image(systemName: "brain")
+                    .tint(.darkGreen)
+                    .font(.system(size: 25))
+                    .padding(.leading, 10)
+                    TextField("Search...", text: $searchViewModel.searchQuery)
+                    .padding([.top, .bottom, .trailing], 10)
+                        .textFieldStyle(.roundedBorder)
+                        .focused($searchActive)
+                        .onChange(of: searchActive) { value in
+                            searchViewModel.isActive = value
+                        }
+                    
+                    if searchActive {
+                        Button("Cancel") {
+                            searchActive = false
+                        }
                         .padding(.trailing, 10)
-                        .foregroundColor(.darkGreen)
-                }
-                .sheet(isPresented: $showingFilters) {
-                    VStack {
-                        Text("Categories:")
-                        ForEach(categories, id: \.self) { category in
-                            HStack {
-                                Button {
-//                                    selectedCategories[category]?.toggle()
-                                    searchViewModel.selectedCategories[category]?.toggle()
-                                    print(searchViewModel.selectedCategories)
-                                } label: {
-                                    Image(systemName: searchViewModel.selectedCategories[category] ?? true ? "checkmark.square.fill" : "square")
-                                }
-                                Text("\(category)")
-                            }
-                        }
-                  
-                        Button("Close") {
-                            showingFilters = false
-                        }
-                        .padding()
                     }
-                    .padding()
                 }
+                .background(Color.tan)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-        }
-        .onAppear() {
-            for category in categories {
-                searchViewModel.selectedCategories[category] = true
-            }
-            searchViewModel.applyFilters()
+            .edgesIgnoringSafeArea(.bottom)
         }
     }
-}
+
+
 

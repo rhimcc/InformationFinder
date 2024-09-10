@@ -28,7 +28,7 @@ struct ContentView: View {
                 }
                 .tag(1)
             
-            BrainBankView(topics: topics)
+            BrainBankView()
                 .tabItem {
                     Label("Brain Bank", systemImage: "brain")
                 }
@@ -62,3 +62,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+

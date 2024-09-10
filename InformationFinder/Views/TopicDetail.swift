@@ -80,8 +80,12 @@ struct TopicDetail: View {
                             }
 
                             .onChange(of: geometry.frame(in: .global).origin.y) { newY in
-                                let scrollOffset = -(newY - topContentHeight) // Account for topContentHeight
-                                scrollPosition = min(max(scrollOffset, 0), contentHeight - UIScreen.main.bounds.height)
+                                let scrollOffset = -(newY - topContentHeight)
+                                let newScrollPosition = min(max(scrollOffset, 0), contentHeight - UIScreen.main.bounds.height)
+                                if (newScrollPosition > scrollPosition) {
+                                    scrollPosition = newScrollPosition
+                                    topic.readPercent = getPercentage()
+                                }
                             }
                     })
             }
@@ -95,6 +99,7 @@ struct TopicDetail: View {
                     .padding(.horizontal, 10)
 
                 Text("\(getPercentage())%")
+                    .padding(.trailing, 10)
             }
             .padding(.top, 10)
         }

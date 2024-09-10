@@ -1,7 +1,9 @@
 import SwiftUI
+import SwiftData
 
 struct BrainBankView: View {
-    var topics: Topics
+    @Query var topics: [Topic]
+//    var topics: Topics
     @StateObject private var searchViewModel: SearchViewModel = SearchViewModel()
     var body: some View {
         NavigationStack {
@@ -11,7 +13,7 @@ struct BrainBankView: View {
                 BrainSearchResults(searchViewModel: searchViewModel)
 
             } else {
-                ListBaseView()
+                ListBaseView(searchViewModel: searchViewModel)
             }
         }
     

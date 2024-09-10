@@ -40,13 +40,10 @@ struct TopicRow: View {
                             .foregroundColor(.darkGreen)
                             .font(.system(size: 30))
                     }
-                    HStack {
-                        Text("READ NOW")
-                        Image(systemName: "arrowtriangle.right")
-                    }
-                    .padding([.top], 15)
-                    .font(.system(size: 15, weight: .bold))
-                    .foregroundColor(.darkGreen)
+                    Text("\(topic.readPercent)%")
+                        .foregroundColor(.darkGreen)
+                        .padding(.top, 20)
+                    
                 }
                 .padding()
                 

@@ -52,9 +52,7 @@ class SearchViewModel: ObservableObject {
             } else {
                 thumbsStatusMatch = false
             }
-            return categoryMatch && readStatusMatch && thumbsStatusMatch
-
-            
+            return categoryMatch && readStatusMatch && thumbsStatusMatch            
         }
     }
 }

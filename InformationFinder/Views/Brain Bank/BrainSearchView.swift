@@ -41,9 +41,11 @@ struct BrainSearchView: View {
                         .padding(.trailing, 10)
                     }
                 }
-                .background(Color.tan)
-                .frame(maxWidth: .infinity, alignment: .leading)
+          
             }
+        
+        .background(Color.tan)
+        .frame(maxWidth: .infinity, alignment: .leading)
             .edgesIgnoringSafeArea(.bottom)
         }
     }

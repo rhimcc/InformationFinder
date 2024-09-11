@@ -9,10 +9,9 @@ struct ListBaseView: View {
     @State private var thumbsUp = true
     
     var body: some View {
-        ZStack {
-            Color.tan
-                .edgesIgnoringSafeArea(.all)
+
             VStack {
+       
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(Array(searchViewModel.thumbsOptions.keys), id: \.self) { option in
@@ -46,6 +45,13 @@ struct ListBaseView: View {
                         }
                     }.padding(.horizontal, 10)
                 }
+                HStack {
+                    Spacer()
+                    Text("(\(searchViewModel.filteredTopics.count) topics)")
+                }.padding(.horizontal, 10)
+                    .padding(.bottom, 0)
+                    .padding(.top, 10)
+
                 
                 ScrollView {
                     ForEach(Array(searchViewModel.filteredTopics.enumerated()), id: \.element) { index, topic in
@@ -57,8 +63,8 @@ struct ListBaseView: View {
                             
                         }
                     }
-                }
-            }
+                }.padding(.top, 0)
+            
             
             
         

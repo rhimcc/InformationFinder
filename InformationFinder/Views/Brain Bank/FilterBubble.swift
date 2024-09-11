@@ -34,7 +34,7 @@ struct FilterBubble: View {
             Text(filterName)
                 .foregroundColor(isSelected ? .darkTan : .darkGreen)
                 .font(.system(size: 15))
-                .bold(isSelected)
+                .bold()
                 .padding(.vertical, 5)
                 .padding(.horizontal, 10)
                 .background(RoundedRectangle(cornerRadius: 20)

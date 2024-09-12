@@ -60,18 +60,8 @@ struct SwipeView: View {
                     }
                 }
                 
-                Button {
-                    for topic in topicList {
-                        modelContext.delete(topic)
-                    }
-                } label : {
-                    Text("Delete all")
-                }
                 
             }
-        }
-        .onAppear {
-            print(unswipedTopics)
         }
     }
 

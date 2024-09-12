@@ -17,7 +17,7 @@ struct ContentView: View {
             TabView(selection: $tabSelection) {
                 SearchBaseView(topics: topicList)
                     .tabItem{
-                        Label("Search", systemImage: "magnifyingglass")
+                        Label("Home", systemImage: "house.fill")
                             .padding(.top, 10)
 
                     }

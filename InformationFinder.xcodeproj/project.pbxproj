@@ -33,6 +33,10 @@
 		9918975A2C800093000D9EBB /* TopicDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991897592C800093000D9EBB /* TopicDetail.swift */; };
 		9971E4F32C90710D00BAD6F8 /* FilterBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9971E4F22C90710D00BAD6F8 /* FilterBubble.swift */; };
 		9971E4F52C9177E300BAD6F8 /* SuggestedTopicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9971E4F42C9177E300BAD6F8 /* SuggestedTopicCard.swift */; };
+		9971E4F92C92A35B00BAD6F8 /* AnimationDarkGreen.json in Resources */ = {isa = PBXBuildFile; fileRef = 9971E4F82C92A35B00BAD6F8 /* AnimationDarkGreen.json */; };
+		9971E4FB2C92A3AB00BAD6F8 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9971E4FA2C92A3AB00BAD6F8 /* LottieView.swift */; };
+		9971E4FE2C92A3CD00BAD6F8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9971E4FD2C92A3CD00BAD6F8 /* Lottie */; };
+		9971E5002C92A60B00BAD6F8 /* AnimationTan.json in Resources */ = {isa = PBXBuildFile; fileRef = 9971E4FF2C92A60B00BAD6F8 /* AnimationTan.json */; };
 		99AC814C2C817AC500593227 /* Topics.json in Resources */ = {isa = PBXBuildFile; fileRef = 99AC814B2C817AC500593227 /* Topics.json */; };
 		99AC81502C817BDE00593227 /* Topics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AC814F2C817BDE00593227 /* Topics.swift */; };
 		99AC81522C81967800593227 /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AC81512C81967800593227 /* TopicViewModel.swift */; };
@@ -85,6 +89,9 @@
 		991897592C800093000D9EBB /* TopicDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetail.swift; sourceTree = "<group>"; };
 		9971E4F22C90710D00BAD6F8 /* FilterBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBubble.swift; sourceTree = "<group>"; };
 		9971E4F42C9177E300BAD6F8 /* SuggestedTopicCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedTopicCard.swift; sourceTree = "<group>"; };
+		9971E4F82C92A35B00BAD6F8 /* AnimationDarkGreen.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AnimationDarkGreen.json; sourceTree = "<group>"; };
+		9971E4FA2C92A3AB00BAD6F8 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		9971E4FF2C92A60B00BAD6F8 /* AnimationTan.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AnimationTan.json; sourceTree = "<group>"; };
 		99AC814B2C817AC500593227 /* Topics.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Topics.json; sourceTree = "<group>"; };
 		99AC814F2C817BDE00593227 /* Topics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topics.swift; sourceTree = "<group>"; };
 		99AC81512C81967800593227 /* TopicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
@@ -95,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9971E4FE2C92A3CD00BAD6F8 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +149,8 @@
 				9918974D2C7F4B26000D9EBB /* Views */,
 				991897472C7F0032000D9EBB /* SearchViewModel.swift */,
 				99AC814B2C817AC500593227 /* Topics.json */,
+				9971E4F82C92A35B00BAD6F8 /* AnimationDarkGreen.json */,
+				9971E4FF2C92A60B00BAD6F8 /* AnimationTan.json */,
 				9905AE2B2C70B2B40007FF69 /* Assets.xcassets */,
 				9905AED82C7438B50007FF69 /* Black_hole_-_Messier_87_crop_max_res.jpg */,
 				9905AE2D2C70B2B40007FF69 /* Preview Content */,
@@ -184,6 +194,7 @@
 				991897592C800093000D9EBB /* TopicDetail.swift */,
 				9905AE572C70B3C40007FF69 /* Topic.swift */,
 				99AC814F2C817BDE00593227 /* Topics.swift */,
+				9971E4FA2C92A3AB00BAD6F8 /* LottieView.swift */,
 				9918974E2C7F4B41000D9EBB /* Home */,
 				9918974F2C7F4B55000D9EBB /* Brain Bank */,
 				991897502C7F4B74000D9EBB /* Swipe */,
@@ -241,6 +252,9 @@
 			dependencies = (
 			);
 			name = InformationFinder;
+			packageProductDependencies = (
+				9971E4FD2C92A3CD00BAD6F8 /* Lottie */,
+			);
 			productName = InformationFinder;
 			productReference = 9905AE242C70B2B40007FF69 /* InformationFinder.app */;
 			productType = "com.apple.product-type.application";
@@ -313,6 +327,9 @@
 				Base,
 			);
 			mainGroup = 9905AE1B2C70B2B40007FF69;
+			packageReferences = (
+				9971E4FC2C92A3CD00BAD6F8 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = 9905AE252C70B2B40007FF69 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -332,6 +349,8 @@
 				9905AE2F2C70B2B40007FF69 /* Preview Assets.xcassets in Resources */,
 				99AC814C2C817AC500593227 /* Topics.json in Resources */,
 				9905AE2C2C70B2B40007FF69 /* Assets.xcassets in Resources */,
+				9971E4F92C92A35B00BAD6F8 /* AnimationDarkGreen.json in Resources */,
+				9971E5002C92A60B00BAD6F8 /* AnimationTan.json in Resources */,
 				9905AED92C7438B50007FF69 /* Black_hole_-_Messier_87_crop_max_res.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +396,7 @@
 				991897562C7FF733000D9EBB /* BrainBankView.swift in Sources */,
 				9905AE562C70B3B10007FF69 /* TopicCard.swift in Sources */,
 				99AC81502C817BDE00593227 /* Topics.swift in Sources */,
+				9971E4FB2C92A3AB00BAD6F8 /* LottieView.swift in Sources */,
 				9918974A2C7F00BD000D9EBB /* SearchBaseView.swift in Sources */,
 				991897582C7FF95C000D9EBB /* BrainSearchResults.swift in Sources */,
 			);
@@ -704,6 +724,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9971E4FC2C92A3CD00BAD6F8 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9971E4FD2C92A3CD00BAD6F8 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9971E4FC2C92A3CD00BAD6F8 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9905AE1C2C70B2B40007FF69 /* Project object */;
 }

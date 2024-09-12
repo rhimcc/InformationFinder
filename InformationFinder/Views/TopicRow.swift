@@ -7,22 +7,24 @@ struct TopicRow: View {
     var body: some View {
         ZStack {
             HStack(alignment: .center) {
-                AsyncImage(url: URL(string: topic.imageURL)) { image in
-                    image.image?.resizable()
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 120, height: 120)
-                        .clipped()
-                    
-                }
+                AsyncImage(url: URL(string: topic.imageURL)) { phase in
+                     if let image = phase.image {
+                         image.resizable()
+                             .scaledToFill()
+                             .frame(width: 120, height: 120)
+                             .clipped()
+                     } else {
+                         LottieView(animationFileName: "AnimationDarkGreen", loopMode: .loop)
+                     }
+                 }
+
                 VStack(alignment: .leading) {
                     Text(topic.topicName)
                         .foregroundColor(.darkGreen)
-//                        .scaledToFill()
-                        .lineLimit(2)  // Allows the text to wrap into two lines if needed
+                        .lineLimit(2)
                         .minimumScaleFactor(0.5)
                         .multilineTextAlignment(.leading)
-                        .fixedSize(horizontal: false, vertical: true) // Allow vertical expansion
+                        .fixedSize(horizontal: false, vertical: true)
                         .frame(maxWidth: 150, alignment: .leading)
                         .bold()
                         .font(.system(size: 20))

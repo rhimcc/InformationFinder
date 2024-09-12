@@ -12,14 +12,16 @@ struct SuggestedTopicCard: View {
                 .fill(.darkGreen)
                 .frame(width: cardWidth, height: cardHeight)
             
-            VStack(spacing: 0) {  // Set spacing to 0 so that image and text are tightly aligned
-                AsyncImage(url: URL(string: topic.imageURL)) { image in
-                    image.image?.resizable()
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: cardWidth, height: cardWidth*2/3)
-                        .clipped()
-                }
+            VStack(spacing: 0) {
+                AsyncImage(url: URL(string: topic.imageURL)) { phase in
+                     if let image = phase.image {
+                         image.resizable()
+                     } else {
+                         LottieView(animationFileName: "AnimationTan", loopMode: .loop)
+                             .frame(width: cardWidth, height: cardWidth*2/3)
+                     }
+                 }
+               
                 
                 Text(topic.topicName)
                     .foregroundColor(.tan)

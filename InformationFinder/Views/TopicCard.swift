@@ -36,7 +36,7 @@ struct TopicCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color.green.opacity(0.9))
+                .fill(.darkGreen)
                 .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
                 .frame(width: cardWidth, height: cardHeight)
 
@@ -49,12 +49,14 @@ struct TopicCard: View {
                         .clipped()
                     
                 }
-                
+                Spacer()
                 Text(topicList[cardIndex].topicName)
-                    .font(.headline)
+//                    .font(.headline)
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity) // Ensure the text spans the full width of the card
+                    .font(.system(size: 30))
+                    .bold()
 
                 Spacer()
             }

@@ -23,7 +23,7 @@ struct SuggestedTopicsView: View {
     var startReadingLiked: [Topic] {
         var startReadingLiked: [Topic] = []
         for topic in topics {
-            if (topic.thumbsUp && topic.readPercent == 0) {
+            if (topic.beenSwiped && topic.thumbsUp && topic.readPercent == 0) {
                 startReadingLiked.append(topic)
             }
         }
@@ -33,7 +33,7 @@ struct SuggestedTopicsView: View {
     var startReadingDisliked: [Topic] {
         var startReadingDisliked: [Topic] = []
         for topic in topics {
-            if (!topic.thumbsUp) {
+            if (!topic.thumbsUp && topic.beenSwiped) {
                 if (topic.readPercent == 0) {
                     startReadingDisliked.append(topic)
                 }
@@ -46,7 +46,7 @@ struct SuggestedTopicsView: View {
     var disliked: [Topic] {
         var disliked: [Topic] = []
         for topic in topics {
-            if (!topic.thumbsUp) {
+            if (!topic.thumbsUp && topic.beenSwiped) {
                 disliked.append(topic)
             }
         }
@@ -56,7 +56,7 @@ struct SuggestedTopicsView: View {
     var liked: [Topic] {
         var liked: [Topic] = []
         for topic in topics {
-            if (topic.thumbsUp) {
+            if (topic.thumbsUp && topic.beenSwiped) {
                 liked.append(topic)
             }
         }

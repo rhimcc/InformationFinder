@@ -31,6 +31,12 @@ class SearchViewModel: ObservableObject {
         
         
         filteredTopics = topics.filter { topic in
+            let swipeStatusMatch: Bool
+            if topic.beenSwiped {
+                swipeStatusMatch = true
+            } else {
+                swipeStatusMatch = false
+            }
             let categoryMatch = selectedCategoryFilters.contains(topic.category)
 
             let readStatusMatch: Bool
@@ -43,7 +49,7 @@ class SearchViewModel: ObservableObject {
             } else {
                 readStatusMatch = false
             }
-            
+        
             let thumbsStatusMatch: Bool
             if selectedThumbsFilters.contains("Thumbs Up"), topic.thumbsUp {
                 thumbsStatusMatch = true
@@ -52,7 +58,7 @@ class SearchViewModel: ObservableObject {
             } else {
                 thumbsStatusMatch = false
             }
-            return categoryMatch && readStatusMatch && thumbsStatusMatch            
+            return categoryMatch && readStatusMatch && thumbsStatusMatch && swipeStatusMatch
         }
     }
 }

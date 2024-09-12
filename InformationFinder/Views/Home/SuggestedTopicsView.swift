@@ -33,12 +33,45 @@ struct SuggestedTopicsView: View {
     var startReadingDisliked: [Topic] {
         var startReadingDisliked: [Topic] = []
         for topic in topics {
-            if (!topic.thumbsUp && topic.readPercent == 0) {
-                startReadingDisliked.append(topic)
+            if (!topic.thumbsUp) {
+                if (topic.readPercent == 0) {
+                    startReadingDisliked.append(topic)
+                }
             }
         }
         return startReadingDisliked
+
     }
+    
+    var disliked: [Topic] {
+        var disliked: [Topic] = []
+        for topic in topics {
+            if (!topic.thumbsUp) {
+                disliked.append(topic)
+            }
+        }
+        return disliked
+    }
+    
+    var liked: [Topic] {
+        var liked: [Topic] = []
+        for topic in topics {
+            if (topic.thumbsUp) {
+                liked.append(topic)
+            }
+        }
+        return liked
+    }
+    
+//    var startReadingDisliked: [Topic] {
+//        var startReadingDisliked: [Topic] = []
+//        for topic in topics {
+//            if (!topic.thumbsUp && topic.readPercent == 0) {
+//                startReadingDisliked.append(topic)
+//            }
+//        }
+//        return startReadingDisliked
+//    }
     
     var body: some View {
         ZStack {
@@ -49,14 +82,18 @@ struct SuggestedTopicsView: View {
                     Text("Continue Reading")
                         .bold()
                         .foregroundStyle(.darkGreen)
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(continueReading) { topic in
-                                NavigationLink {
-                                    TopicDetail(topic: topic)
-                                } label: {
-                                    SuggestedTopicCard(topic: topic)
-                                        .padding(.trailing, 5)
+                    if (continueReading.isEmpty) {
+                        ErrorView(text: "You have not began reading anything.", tip: "Choose any topic and start reading!")
+                    } else {
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(continueReading) { topic in
+                                    NavigationLink {
+                                        TopicDetail(topic: topic)
+                                    } label: {
+                                        SuggestedTopicCard(topic: topic)
+                                            .padding(.trailing, 5)
+                                    }
                                 }
                             }
                         }
@@ -66,14 +103,20 @@ struct SuggestedTopicsView: View {
                         .bold()
                         .foregroundStyle(.darkGreen)
                         .padding(.top, 20)
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(startReadingLiked) { topic in
-                                NavigationLink {
-                                    TopicDetail(topic: topic)
-                                } label: {
-                                    SuggestedTopicCard(topic: topic)
-                                        .padding(.trailing, 5)
+                    if (liked.isEmpty) {
+                        ErrorView(text: "You have not liked anything.", tip: "Start swiping right!")
+                    } else if (startReadingLiked.isEmpty) {
+                        ErrorView(text: "You have read everything you have liked", tip: "Swipe right in Swipe mode or hit the thumb in the brain bank to like something!")
+                    } else {
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(startReadingLiked) { topic in
+                                    NavigationLink {
+                                        TopicDetail(topic: topic)
+                                    } label: {
+                                        SuggestedTopicCard(topic: topic)
+                                            .padding(.trailing, 5)
+                                    }
                                 }
                             }
                         }
@@ -82,14 +125,22 @@ struct SuggestedTopicsView: View {
                         .bold()
                         .foregroundStyle(.darkGreen)
                         .padding(.top, 20)
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(startReadingDisliked) { topic in
-                                NavigationLink {
-                                    TopicDetail(topic: topic)
-                                } label: {
-                                    SuggestedTopicCard(topic: topic)
-                                        .padding(.trailing, 5)
+                    if (disliked.isEmpty) {
+                        ErrorView(text: "You have not disliked anything.", tip: "That's fine! Keep reading what you like!")
+                        
+                    } else if (startReadingDisliked.isEmpty) {
+                        ErrorView(text: "You read everything you have disliked", tip: "Did you really still dislike them?")
+                        
+                    } else {
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(startReadingDisliked) { topic in
+                                    NavigationLink {
+                                        TopicDetail(topic: topic)
+                                    } label: {
+                                        SuggestedTopicCard(topic: topic)
+                                            .padding(.trailing, 5)
+                                    }
                                 }
                             }
                         }

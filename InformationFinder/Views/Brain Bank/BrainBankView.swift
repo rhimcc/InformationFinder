@@ -15,7 +15,7 @@ struct BrainBankView: View {
                     BrainSearchResults(searchViewModel: searchViewModel)
                     
                 } else {
-                    ListBaseView(searchViewModel: searchViewModel)
+                    ListBaseView()
                 }
             }.background(.tan)
         }

@@ -28,8 +28,6 @@ struct FilterBubble: View {
                 .background(RoundedRectangle(cornerRadius: 20)
                     .fill(isSelected ? .darkGreen : .darkTan))
 
-
-
         } else {
             Text(filterName)
                 .foregroundColor(isSelected ? .darkTan : .darkGreen)

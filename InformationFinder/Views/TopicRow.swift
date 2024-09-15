@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct TopicRow: View {
+    var filterViewModel: FilterViewModel?
     var topic: Topic
     var colour: Color
 
@@ -37,6 +38,9 @@ struct TopicRow: View {
                 VStack (alignment: .trailing) {
                     Button {
                         topic.thumbsUp.toggle()
+                        if let filterViewModel = filterViewModel {
+                            filterViewModel.applyFilters()
+                        }
                     } label: {
                         Image(systemName: topic.thumbsUp ? "hand.thumbsup.fill" : "hand.thumbsdown.fill")
                             .foregroundColor(.darkGreen)

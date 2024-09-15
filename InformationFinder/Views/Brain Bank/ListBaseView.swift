@@ -84,14 +84,11 @@ struct ListBaseView: View {
             
             ScrollView {
                 ForEach(Array(filterViewModel.filteredTopics.enumerated()), id: \.element) { index, topic in
-                    if (topic.beenSwiped) {
-                        NavigationLink {
-                            TopicDetail(topic: topic)
-                        } label : {
-                            TopicRow(filterViewModel: filterViewModel, topic: topic, colour: index % 2 == 0 ? .midGreen : .lightGreen)
-                                .padding([.top, .leading, .trailing], 10)
-                            
-                        }
+                    NavigationLink {
+                        TopicDetail(topic: topic)
+                    } label : {
+                        TopicRow(filterViewModel: filterViewModel, topic: topic, colour: index % 2 == 0 ? .midGreen : .lightGreen)
+                            .padding([.top, .leading, .trailing], 10)
                     }
                 }
             }.padding(.top, 0)

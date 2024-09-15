@@ -11,19 +11,18 @@ class FilterViewModel: ObservableObject {
     
     @Published var readOptions: [String: Bool] = ["Read": false, "Unread": false, "Reading": false]{
         didSet {
-            applyFilters()
+            applyFilters() //applies the filters to the brain bank list when any of the above options are toggled
         }
     }
     @Published var thumbsOptions: [String: Bool] = ["Thumbs Up": false, "Thumbs Down": false] {
         didSet {
-            applyFilters()
-
+            applyFilters() //applies the filters to the brain bank list when any of the above options are toggled
         }
     }
     
     @Published var selectedCategories: [String: Bool] = ["Humanity": false, "Computing": false, "History": false, "Nature": false, "Science": false, "Art": false] {
         didSet {
-            applyFilters()
+            applyFilters() //applies the filters to the brain bank list when any of the above options are toggled
         }
     }
     
@@ -32,13 +31,13 @@ class FilterViewModel: ObservableObject {
     var allSelected = true
     
     func applyFilters() {
-        let selectedCategoryFilters = selectedCategories.filter { $0.value }.map { $0.key }
-        let selectedReadFilters = readOptions.filter { $0.value }.map { $0.key }
-        let selectedThumbsFilters = thumbsOptions.filter { $0.value }.map { $0.key }
+        let selectedCategoryFilters = selectedCategories.filter { $0.value }.map { $0.key } // gets all of the selected filters from the category section
+        let selectedReadFilters = readOptions.filter { $0.value }.map { $0.key } // gets all of the selected filters from the read section
+        let selectedThumbsFilters = thumbsOptions.filter { $0.value }.map { $0.key } // gets all of the selected filters from the thumbs section
         
-        // Show all topics if no filters are selected
+        // Show all topics that have been swiped if no filters are selected
         if selectedCategoryFilters.isEmpty && selectedReadFilters.isEmpty && selectedThumbsFilters.isEmpty {
-            filteredTopics = topics
+            filteredTopics = topics.filter {$0.beenSwiped}
             return
         }
         

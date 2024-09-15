@@ -9,19 +9,19 @@ import Foundation
 
 class FilterViewModel: ObservableObject {
     
-    @Published var readOptions: [String: Bool] = ["Read": true, "Unread": true, "Reading": true]{
+    @Published var readOptions: [String: Bool] = ["Read": false, "Unread": false, "Reading": false]{
         didSet {
             applyFilters()
         }
     }
-    @Published var thumbsOptions: [String: Bool] = ["Thumbs Up": true, "Thumbs Down": true] {
+    @Published var thumbsOptions: [String: Bool] = ["Thumbs Up": false, "Thumbs Down": false] {
         didSet {
             applyFilters()
 
         }
     }
     
-    @Published var selectedCategories: [String: Bool] = ["Humanity": true, "Computing": true, "History": true, "Nature": true, "Science": true, "Art": true] {
+    @Published var selectedCategories: [String: Bool] = ["Humanity": false, "Computing": false, "History": false, "Nature": false, "Science": false, "Art": false] {
         didSet {
             applyFilters()
         }
@@ -36,6 +36,12 @@ class FilterViewModel: ObservableObject {
         let selectedReadFilters = readOptions.filter { $0.value }.map { $0.key }
         let selectedThumbsFilters = thumbsOptions.filter { $0.value }.map { $0.key }
         
+        // Show all topics if no filters are selected
+        if selectedCategoryFilters.isEmpty && selectedReadFilters.isEmpty && selectedThumbsFilters.isEmpty {
+            filteredTopics = topics
+            return
+        }
+        
         
         filteredTopics = topics.filter { topic in
             let swipeStatusMatch: Bool
@@ -44,61 +50,49 @@ class FilterViewModel: ObservableObject {
             } else {
                 swipeStatusMatch = false
             }
-            let categoryMatch = selectedCategoryFilters.contains(topic.category)
+            
+            let categoryMatch: Bool
+            if selectedCategoryFilters.isEmpty {
+                categoryMatch = true
+            } else {
+                categoryMatch = selectedCategoryFilters.contains(topic.category)
+            }
             
             let readStatusMatch: Bool
-            if selectedReadFilters.contains("Read"), topic.readPercent == 100 {
-                readStatusMatch = true
-            } else if selectedReadFilters.contains("Unread"), topic.readPercent == 0 {
-                readStatusMatch = true
-            } else if selectedReadFilters.contains("Reading"), topic.readPercent > 0 && topic.readPercent < 100 {
-                readStatusMatch = true
+            if selectedReadFilters.isEmpty {
+                    readStatusMatch = true
             } else {
-                readStatusMatch = false
+                if selectedReadFilters.contains("Read"), topic.readPercent == 100 {
+                    readStatusMatch = true
+                } else if selectedReadFilters.contains("Unread"), topic.readPercent == 0 {
+                    readStatusMatch = true
+                } else if selectedReadFilters.contains("Reading"), topic.readPercent > 0 && topic.readPercent < 100 {
+                    readStatusMatch = true
+                } else {
+                    readStatusMatch = false
+                }
             }
             
             let thumbsStatusMatch: Bool
-            if selectedThumbsFilters.contains("Thumbs Up"), topic.thumbsUp {
-                thumbsStatusMatch = true
-            } else if selectedThumbsFilters.contains("Thumbs Down"), !topic.thumbsUp {
+            if selectedThumbsFilters.isEmpty {
                 thumbsStatusMatch = true
             } else {
-                thumbsStatusMatch = false
-            }
-            return categoryMatch && readStatusMatch && thumbsStatusMatch && swipeStatusMatch
-        }
-    }
-    
-    func toggleOption(for options: inout [String: Bool], option: String) -> String? {
-        let selectedCount = options.values.filter { $0 }.count
-        
-        if let isSelected = options[option], isSelected {
-            if selectedCount == 1 {
-                switch options {
-                case readOptions:
-                    return "read option"
-                    
-                case selectedCategories:
-                    return "category"
-                    
-                case thumbsOptions:
-                    return "thumb option"
-                
-                default:
-                    return nil
+                if selectedThumbsFilters.contains("Thumbs Up"), topic.thumbsUp {
+                    thumbsStatusMatch = true
+                } else if selectedThumbsFilters.contains("Thumbs Down"), !topic.thumbsUp {
+                    thumbsStatusMatch = true
+                } else {
+                    thumbsStatusMatch = false
                 }
-            } else {
-                options[option]?.toggle()
-                return nil
             }
-        } else {
-            options[option]?.toggle()
-            return nil
+
+            return (categoryMatch && readStatusMatch && thumbsStatusMatch) && swipeStatusMatch
         }
+        
     }
     
-    func checkAllSelected() -> Bool {
-        if readOptions.values.contains(false) || thumbsOptions.values.contains(false) || selectedCategories.values.contains(false) {
+    func checkNoneSelected() -> Bool {
+        if readOptions.values.contains(true) || thumbsOptions.values.contains(true) || selectedCategories.values.contains(true) {
             return false
         }
         return true

@@ -19,13 +19,14 @@ struct ListBaseView: View {
             ScrollView(.horizontal) {
                 HStack {
                     Button {
-                       setAllTrue()
+                       setAllFalse()
                     } label: {
-                        FilterBubble(filterName: "ALL", isSelected: filterViewModel.checkAllSelected())
+                        FilterBubble(filterName: "ALL", isSelected: filterViewModel.checkNoneSelected())
                     }
                     ForEach(Array(filterViewModel.thumbsOptions.keys), id: \.self) { option in
                         Button {
-                            errorMessage = filterViewModel.toggleOption(for: &filterViewModel.thumbsOptions, option: option)
+                            filterViewModel.thumbsOptions[option]?.toggle()
+//                            errorMessage = filterViewModel.toggleOption(for: &filterViewModel.thumbsOptions, option: option)
                         } label: {
                             FilterBubble(filterName: option, isSelected: filterViewModel.thumbsOptions[option] ?? true)
                         }
@@ -33,7 +34,8 @@ struct ListBaseView: View {
                     
                     ForEach(Array(filterViewModel.readOptions.keys), id: \.self) { option in
                         Button {
-                            errorMessage = filterViewModel.toggleOption(for: &filterViewModel.readOptions, option: option)
+                            filterViewModel.readOptions[option]?.toggle()
+//                            errorMessage = filterViewModel.toggleOption(for: &filterViewModel.readOptions, option: option)
                         } label: {
                             FilterBubble(filterName: option, isSelected: filterViewModel.readOptions[option] ?? true)
                         }
@@ -47,7 +49,9 @@ struct ListBaseView: View {
                 HStack {
                     ForEach(Array(filterViewModel.selectedCategories.keys), id: \.self) { option in
                         Button {
-                            errorMessage = filterViewModel.toggleOption(for: &filterViewModel.selectedCategories, option: option)
+                            filterViewModel.selectedCategories[option]?.toggle()
+
+//                            errorMessage = filterViewModel.toggleOption(for: &filterViewModel.selectedCategories, option: option)
                         } label: {
                             FilterBubble(filterName: option, isSelected: filterViewModel.selectedCategories[option] ?? true)
                         }
@@ -71,7 +75,7 @@ struct ListBaseView: View {
                 .padding(.top, 10)
             
             if (filterViewModel.filteredTopics.isEmpty) {
-                if (filterViewModel.checkAllSelected()) {
+                if (filterViewModel.checkNoneSelected()) {
                     ErrorView(text: "You have not swiped on any topics", tip: "Go to \"Swipe\" and get swiping!")
                 } else {
                     ErrorView(text: "The selected filters have no matches", tip: "Try different filters")
@@ -98,15 +102,15 @@ struct ListBaseView: View {
         }
     }
     
-    func setAllTrue() {
+    func setAllFalse() {
         for option in filterViewModel.readOptions.keys {
-            filterViewModel.readOptions[option] = true
+            filterViewModel.readOptions[option] = false
         }
         for option in filterViewModel.thumbsOptions.keys {
-            filterViewModel.thumbsOptions[option] = true
+            filterViewModel.thumbsOptions[option] = false
         }
         for option in filterViewModel.selectedCategories.keys {
-            filterViewModel.selectedCategories[option] = true
+            filterViewModel.selectedCategories[option] = false
         }
     }
 }

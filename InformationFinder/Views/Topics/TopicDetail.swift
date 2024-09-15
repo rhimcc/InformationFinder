@@ -8,7 +8,6 @@ struct TopicDetail: View {
     var topic: Topic
 
     var body: some View {
-        ScrollViewReader { scrollViewProxy in
             VStack {
                 ScrollView {
                     VStack {
@@ -98,7 +97,6 @@ struct TopicDetail: View {
                     })
 
                     VStack {
-                        // Scrollable content
                         Text(.init(topic.topicInfo))
                             .padding(20)
                             .background(GeometryReader { geometry in
@@ -111,7 +109,6 @@ struct TopicDetail: View {
                                         let newScrollPosition = min(max(scrollOffset, 0), contentHeight - UIScreen.main.bounds.height)
                                         if newScrollPosition > topic.scrollPosition {
                                             topic.scrollPosition = newScrollPosition
-//                                            topic.scrollPosition = scrollPosition
                                             topic.readPercent = getPercentage()
                                         }
                                     }
@@ -131,7 +128,7 @@ struct TopicDetail: View {
                 }
                 .padding(.top, 10)
             }
-        }
+        
     }
 
     func getPercentage() -> Int {

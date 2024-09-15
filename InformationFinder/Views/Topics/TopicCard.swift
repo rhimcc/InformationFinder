@@ -59,9 +59,21 @@ struct TopicCard: View {
                     .frame(maxWidth: .infinity) // Ensure the text spans the full width of the card
                     .font(.system(size: 30))
                     .bold()
+                    .multilineTextAlignment(.center)
+                Text(topicList[cardIndex].category)
+                    .bold()
+                Spacer()
+                HStack {
+                    Text("\(topicList[cardIndex].wordCount) words")
+            
+                    Text("|")
+                    Text("~ \(topicList[cardIndex].calculatedTime) minutes")
+                }
 
                 Spacer()
+                
             }
+            .foregroundStyle(.tan)
             .frame(width: cardWidth, height: cardHeight)
             .clipShape(RoundedRectangle(cornerRadius: 20)) // Apply corner radius to the entire content of the card
         }

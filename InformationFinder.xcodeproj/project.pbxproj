@@ -146,9 +146,9 @@
 		9905AE262C70B2B40007FF69 /* InformationFinder */ = {
 			isa = PBXGroup;
 			children = (
+				995F0F932C96B688008C065A /* ViewModels */,
+				995F0F922C96B677008C065A /* Models */,
 				9918974D2C7F4B26000D9EBB /* Views */,
-				991897472C7F0032000D9EBB /* SearchViewModel.swift */,
-				995F0F8B2C966D78008C065A /* FilterViewModel.swift */,
 				99AC814B2C817AC500593227 /* Topics.json */,
 				9971E4F82C92A35B00BAD6F8 /* AnimationDarkGreen.json */,
 				9971E4FF2C92A60B00BAD6F8 /* AnimationTan.json */,
@@ -189,14 +189,7 @@
 			children = (
 				9905AE272C70B2B40007FF69 /* InformationFinderApp.swift */,
 				9905AE292C70B2B40007FF69 /* ContentView.swift */,
-				9905AE552C70B3B10007FF69 /* TopicCard.swift */,
-				99AC81512C81967800593227 /* TopicViewModel.swift */,
-				991897512C7FEFFB000D9EBB /* TopicRow.swift */,
-				991897592C800093000D9EBB /* TopicDetail.swift */,
-				9905AE572C70B3C40007FF69 /* Topic.swift */,
-				99AC814F2C817BDE00593227 /* Topics.swift */,
-				9971E5012C92AA0F00BAD6F8 /* ErrorView.swift */,
-				9971E4FA2C92A3AB00BAD6F8 /* LottieView.swift */,
+				995F0F912C96B630008C065A /* Topics */,
 				9918974E2C7F4B41000D9EBB /* Home */,
 				9918974F2C7F4B55000D9EBB /* Brain Bank */,
 				991897502C7F4B74000D9EBB /* Swipe */,
@@ -231,9 +224,40 @@
 		991897502C7F4B74000D9EBB /* Swipe */ = {
 			isa = PBXGroup;
 			children = (
+				9971E5012C92AA0F00BAD6F8 /* ErrorView.swift */,
+				9971E4FA2C92A3AB00BAD6F8 /* LottieView.swift */,
 				9918973D2C7ED1C0000D9EBB /* SwipeView.swift */,
 			);
 			path = Swipe;
+			sourceTree = "<group>";
+		};
+		995F0F912C96B630008C065A /* Topics */ = {
+			isa = PBXGroup;
+			children = (
+				9905AE552C70B3B10007FF69 /* TopicCard.swift */,
+				991897512C7FEFFB000D9EBB /* TopicRow.swift */,
+				991897592C800093000D9EBB /* TopicDetail.swift */,
+			);
+			path = Topics;
+			sourceTree = "<group>";
+		};
+		995F0F922C96B677008C065A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9905AE572C70B3C40007FF69 /* Topic.swift */,
+				99AC814F2C817BDE00593227 /* Topics.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		995F0F932C96B688008C065A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				991897472C7F0032000D9EBB /* SearchViewModel.swift */,
+				99AC81512C81967800593227 /* TopicViewModel.swift */,
+				995F0F8B2C966D78008C065A /* FilterViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

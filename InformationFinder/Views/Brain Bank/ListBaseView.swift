@@ -71,7 +71,11 @@ struct ListBaseView: View {
                 .padding(.top, 10)
             
             if (filterViewModel.filteredTopics.isEmpty) {
-                ErrorView(text: "The selected filters have no matches", tip: "Try different filters")
+                if (filterViewModel.checkAllSelected()) {
+                    ErrorView(text: "You have not swiped on any topics", tip: "Go to \"Swipe\" and get swiping!")
+                } else {
+                    ErrorView(text: "The selected filters have no matches", tip: "Try different filters")
+                }
             }
             
             ScrollView {

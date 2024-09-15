@@ -13,9 +13,9 @@ struct BrainSearchResults: View {
     @Query private var topics: [Topic]
         var filteredTopics: [Topic] {
         if searchViewModel.searchQuery.isEmpty {
-            return Array(topics)
+            return Array(topics.filter {$0.beenSwiped})
           } else {
-              return topics.filter { $0.topicName.localizedCaseInsensitiveContains(searchViewModel.searchQuery) }
+              return topics.filter { $0.topicName.localizedCaseInsensitiveContains(searchViewModel.searchQuery)}
           }
       }
     

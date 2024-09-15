@@ -24,7 +24,7 @@ struct TopicDetail: View {
 
                             ZStack {
                                 Circle()
-                                    .frame(width: 75, height: 75)
+                                    .frame(width: 60, height: 60)
                                     .opacity(0.75)
                                     .foregroundColor(.tan)
 
@@ -37,6 +37,22 @@ struct TopicDetail: View {
                                 }
                             }
                             .position(x: UIScreen.main.bounds.width - 50, y: 50)
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .frame(width: 80, height: 40)
+                                    .opacity(0.75)
+                                    .foregroundColor(.tan)
+
+                                Button {
+                                    topic.scrollPosition = 0
+                                    topic.readPercent = 0
+                                } label: {
+                                  Text("Re-Read")
+                                        .bold()
+                                        .foregroundStyle(.darkGreen)
+                                }
+                            }
+                            .position(x: 50, y: 40)
                         }
 
                         Text(topic.topicName)

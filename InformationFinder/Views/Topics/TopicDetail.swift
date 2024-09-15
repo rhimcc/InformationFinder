@@ -16,7 +16,7 @@ struct TopicDetail: View {
                                 if let image = phase.image {
                                     image.resizable()
                                         .scaledToFill()
-                                        .frame(width: 120, height: 120)
+                                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
                                         .clipped()
                                 } else {
                                     LottieView(animationFileName: "AnimationDarkGreen", loopMode: .loop)

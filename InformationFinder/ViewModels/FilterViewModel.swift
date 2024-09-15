@@ -21,7 +21,7 @@ class FilterViewModel: ObservableObject {
         }
     }
     
-    @Published var selectedCategories: [String: Bool] = ["Humanity": true, "Computing": true, "History": true, "Nature": true, "Psychology": true, "Science": true] {
+    @Published var selectedCategories: [String: Bool] = ["Humanity": true, "Computing": true, "History": true, "Nature": true, "Science": true, "Art": true] {
         didSet {
             applyFilters()
         }

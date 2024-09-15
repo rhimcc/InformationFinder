@@ -89,7 +89,7 @@ struct SuggestedTopicsView: View {
                             HStack {
                                 ForEach(continueReading) { topic in
                                     NavigationLink {
-                                        TopicDetail(topic: topic)
+                                        TopicDetail(scrollPosition: topic.scrollPosition, topic: topic)
                                     } label: {
                                         SuggestedTopicCard(topic: topic)
                                             .padding(.trailing, 5)
@@ -112,7 +112,7 @@ struct SuggestedTopicsView: View {
                             HStack {
                                 ForEach(startReadingLiked) { topic in
                                     NavigationLink {
-                                        TopicDetail(topic: topic)
+                                        TopicDetail(scrollPosition: topic.scrollPosition, topic: topic)
                                     } label: {
                                         SuggestedTopicCard(topic: topic)
                                             .padding(.trailing, 5)
@@ -136,7 +136,7 @@ struct SuggestedTopicsView: View {
                             HStack {
                                 ForEach(startReadingDisliked) { topic in
                                     NavigationLink {
-                                        TopicDetail(topic: topic)
+                                        TopicDetail(scrollPosition: topic.scrollPosition, topic: topic)
                                     } label: {
                                         SuggestedTopicCard(topic: topic)
                                             .padding(.trailing, 5)

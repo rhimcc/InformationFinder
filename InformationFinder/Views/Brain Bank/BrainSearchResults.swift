@@ -24,7 +24,7 @@ struct BrainSearchResults: View {
             ScrollView {
                 ForEach(Array(filteredTopics.enumerated()), id: \.element) { index, topic in
                     NavigationLink {
-                        TopicDetail(topic: topic)
+                        TopicDetail(scrollPosition: topic.scrollPosition, topic: topic)
                     } label : {
                         TopicRow(topic: topic, colour: index % 2 == 0 ? .midGreen : .lightGreen)
                             .padding([.top, .leading, .trailing], 20)

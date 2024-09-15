@@ -19,6 +19,7 @@ class Topic: Decodable {
     var thumbsUp: Bool
     var imageCredit: String
     var readPercent: Int
+    var scrollPosition: Double
     
     var wordCount: Int {
         let components = self.topicInfo.components(separatedBy: .whitespacesAndNewlines)
@@ -41,6 +42,7 @@ class Topic: Decodable {
         self.category = category
         self.readPercent = 0
         self.imageCredit = imageCredit
+        self.scrollPosition = 0.0
     }
     
     required init(from decoder: Decoder) throws {
@@ -54,6 +56,8 @@ class Topic: Decodable {
             self.beenSwiped = false
             self.imageCredit = try container.decode(String.self, forKey: .imageCredit)
             self.readPercent = 0
+            self.scrollPosition = 0.0
+
         }
         
         enum CodingKeys: String, CodingKey {

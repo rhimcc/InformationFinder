@@ -41,17 +41,19 @@ struct TopicCard: View {
                 .frame(width: cardWidth, height: cardHeight)
 
             VStack(spacing: 0) {  // Set spacing to 0 so that image and text are tightly aligned
-                AsyncImage(url: URL(string: topicList[cardIndex].imageURL)) { image in
-                    image.image?.resizable()
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: cardWidth, height: cardWidth)
-                        .clipped()
-                    
+                AsyncImage(url: URL(string: topicList[cardIndex].imageURL)) { phase in
+                    if let image = phase.image {
+                        image.resizable()
+                            .scaledToFill()
+                            .frame(width: cardWidth, height: cardWidth)
+                            .clipped()
+                    } else {
+                        LottieView(animationFileName: "AnimationTan", loopMode: .loop)
+                    }
                 }
+                
                 Spacer()
                 Text(topicList[cardIndex].topicName)
-//                    .font(.headline)
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity) // Ensure the text spans the full width of the card

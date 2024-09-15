@@ -29,30 +29,44 @@ struct TopicDetail: View {
                                     .foregroundColor(.tan)
 
                                 Button {
-                                    topic.thumbsUp.toggle()
+                                    if (topic.beenSwiped) {
+                                        topic.thumbsUp.toggle()
+                                    } else {
+                                        topic.thumbsUp = true
+                                        topic.beenSwiped = true
+                                    }
                                 } label: {
-                                    Image(systemName: topic.thumbsUp ? "hand.thumbsup.fill" : "hand.thumbsdown.fill")
-                                        .font(.system(size: 35))
-                                        .foregroundColor(.darkGreen)
+                                    if !topic.beenSwiped {
+                                        Image(systemName: "minus.circle.fill")
+                                            .foregroundColor(.darkGreen)
+                                            .font(.system(size: 35))
+                                    } else {
+                                        Image(systemName: topic.thumbsUp ? "hand.thumbsup.fill" : "hand.thumbsdown.fill")
+                                            .font(.system(size: 35))
+                                            .foregroundColor(.darkGreen)
+                                    }
                                 }
                             }
                             .position(x: UIScreen.main.bounds.width - 50, y: 50)
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 20)
-                                    .frame(width: 80, height: 40)
-                                    .opacity(0.75)
-                                    .foregroundColor(.tan)
-
-                                Button {
-                                    topic.scrollPosition = 0
-                                    topic.readPercent = 0
-                                } label: {
-                                  Text("Re-Read")
-                                        .bold()
-                                        .foregroundStyle(.darkGreen)
+                            
+                            if (topic.readPercent == 100) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .frame(width: 80, height: 40)
+                                        .opacity(0.75)
+                                        .foregroundColor(.tan)
+                                    
+                                    Button {
+                                        topic.scrollPosition = 0
+                                        topic.readPercent = 0
+                                    } label: {
+                                        Text("Re-Read")
+                                            .bold()
+                                            .foregroundStyle(.darkGreen)
+                                    }
                                 }
+                                .position(x: 50, y: 40)
                             }
-                            .position(x: 50, y: 40)
                         }
 
                         Text(topic.topicName)

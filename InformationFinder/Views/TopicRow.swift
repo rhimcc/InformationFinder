@@ -36,16 +36,26 @@ struct TopicRow: View {
                 .padding(.leading, 10)
                 Spacer()
                 VStack (alignment: .trailing) {
-                    Button {
-                        topic.thumbsUp.toggle()
-                        if let filterViewModel = filterViewModel {
-                            filterViewModel.applyFilters()
-                        }
-                    } label: {
-                        Image(systemName: topic.thumbsUp ? "hand.thumbsup.fill" : "hand.thumbsdown.fill")
+                    if (!topic.beenSwiped) {
+                        Image(systemName: "minus.circle")
                             .foregroundColor(.darkGreen)
                             .font(.system(size: 30))
+                        
+                    } else {
+                        Button {
+                            topic.thumbsUp.toggle()
+                            if let filterViewModel = filterViewModel {
+                                filterViewModel.applyFilters()
+                            }
+                            
+                        } label: {
+                            Image(systemName: topic.thumbsUp ? "hand.thumbsup.fill" : "hand.thumbsdown.fill")
+                                .foregroundColor(.darkGreen)
+                                .font(.system(size: 30))
+                        }
+                        
                     }
+                
                     Text("\(topic.readPercent)%")
                         .foregroundColor(.darkGreen)
                         .padding(.top, 20)

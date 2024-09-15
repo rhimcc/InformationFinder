@@ -35,9 +35,16 @@ struct SuggestedTopicCard: View {
                     .padding(.top, 10)
                 Spacer()
                 HStack {
-                    Image(systemName: topic.thumbsUp ? "hand.thumbsup.fill" : "hand.thumbsdown.fill")
-                        .foregroundColor(.tan)
-                        .padding(.leading, 10)
+                    if (!topic.beenSwiped) {
+                        Image(systemName: "minus.circle")
+                            .foregroundColor(.tan)
+                            .padding(.leading, 10)
+                    } else {
+                        Image(systemName: topic.thumbsUp ? "hand.thumbsup.fill" : "hand.thumbsdown.fill")
+                            .foregroundColor(.tan)
+                            .padding(.leading, 10)
+                    }
+                    
 
                     Spacer()
                     Text("\(topic.readPercent)%")

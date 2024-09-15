@@ -63,6 +63,16 @@ struct SuggestedTopicsView: View {
         return liked
     }
     
+    var unswiped: [Topic] {
+        var unswiped: [Topic] = []
+        for topic in topics {
+            if !topic.beenSwiped {
+                unswiped.append(topic)
+            }
+        }
+        return unswiped
+    }
+    
 //    var startReadingDisliked: [Topic] {
 //        var startReadingDisliked: [Topic] = []
 //        for topic in topics {
@@ -106,7 +116,7 @@ struct SuggestedTopicsView: View {
                     if (liked.isEmpty) {
                         ErrorView(text: "You have not liked anything.", tip: "Start swiping right!")
                     } else if (startReadingLiked.isEmpty) {
-                        ErrorView(text: "You have read everything you have liked", tip: "Swipe right in Swipe mode or hit the thumb in the brain bank to like something!")
+                        ErrorView(text: "You have read everything you've liked", tip: "Swipe right in Swipe mode or tap the thumb in Brain Bank to like more!")
                     } else {
                         ScrollView(.horizontal) {
                             HStack {
@@ -135,6 +145,28 @@ struct SuggestedTopicsView: View {
                         ScrollView(.horizontal) {
                             HStack {
                                 ForEach(startReadingDisliked) { topic in
+                                    NavigationLink {
+                                        TopicDetail(scrollPosition: topic.scrollPosition, topic: topic)
+                                    } label: {
+                                        SuggestedTopicCard(topic: topic)
+                                            .padding(.trailing, 5)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    Text("Some Topics You May Not Have Seen")
+                        .bold()
+                        .foregroundStyle(.darkGreen)
+                        .padding(.top, 20)
+                    if (unswiped.isEmpty) {
+                        ErrorView(text: "You have seen everything!", tip: "Go to the Brain Bank to read them!")
+                        
+                    } else {
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(unswiped) { topic in
                                     NavigationLink {
                                         TopicDetail(scrollPosition: topic.scrollPosition, topic: topic)
                                     } label: {

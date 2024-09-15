@@ -26,8 +26,13 @@ struct ErrorView: View {
                     Text(text)
                         .bold()
                         .foregroundColor(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                     Text(tip)
                         .foregroundColor(.white)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.5) // Shrinks text if needed
+                        .multilineTextAlignment(.leading)
                     
                 }
          

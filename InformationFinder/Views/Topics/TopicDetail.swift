@@ -12,14 +12,18 @@ struct TopicDetail: View {
                 ScrollView {
                     VStack {
                         ZStack {
-                            AsyncImage(url: URL(string: topic.imageURL)) { image in
-                                image.image?
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
-                                    .clipped()
-                                    .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
+                            AsyncImage(url: URL(string: topic.imageURL)) { phase in
+                                if let image = phase.image {
+                                    image.resizable()
+                                        .scaledToFill()
+                                        .frame(width: 120, height: 120)
+                                        .clipped()
+                                } else {
+                                    LottieView(animationFileName: "AnimationDarkGreen", loopMode: .loop)
+                                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
+                                }
                             }
+                            
                             VStack {
                                 
                                 ZStack {

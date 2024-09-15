@@ -11,95 +11,34 @@ import SwiftData
 struct SuggestedTopicsView: View {
     @Query private var topics: [Topic]
     var continueReading: [Topic] {
-        var continueReading: [Topic] = []
-        for topic in topics {
-            if (topic.readPercent < 100 && topic.readPercent > 0) {
-                continueReading.append(topic)
-            }
-        }
-        return continueReading
+        return getPartiallyRead() //shows any topic that has been partially read
     }
     
     var startReadingLiked: [Topic] {
-        var startReadingLiked: [Topic] = []
-        for topic in topics {
-            if (topic.beenSwiped && topic.thumbsUp && topic.readPercent == 0) {
-                startReadingLiked.append(topic)
-            }
-        }
-        return startReadingLiked
+        return getLiked().filter(getUnread().contains).filter(getSwiped().contains) // shows topics which have been swiped, liked, and have not been  read
     }
     
     var startReadingDisliked: [Topic] {
-        var startReadingDisliked: [Topic] = []
-        for topic in topics {
-            if (!topic.thumbsUp && topic.beenSwiped) {
-                if (topic.readPercent == 0) {
-                    startReadingDisliked.append(topic)
-                }
-            }
-        }
-        return startReadingDisliked
-
+        return getDisliked().filter(getUnread().contains).filter(getSwiped().contains) // shows topics which have been swiped, disliked, and have not been read
     }
-    
-    var disliked: [Topic] {
-        var disliked: [Topic] = []
-        for topic in topics {
-            if (!topic.thumbsUp && topic.beenSwiped) {
-                disliked.append(topic)
-            }
-        }
-        return disliked
-    }
-    
-    var liked: [Topic] {
-        var liked: [Topic] = []
-        for topic in topics {
-            if (topic.thumbsUp && topic.beenSwiped) {
-                liked.append(topic)
-            }
-        }
-        return liked
-    }
-    
-    var unswiped: [Topic] {
-        var unswiped: [Topic] = []
-        for topic in topics {
-            if !topic.beenSwiped {
-                unswiped.append(topic)
-            }
-        }
-        return unswiped
-    }
-    
-//    var startReadingDisliked: [Topic] {
-//        var startReadingDisliked: [Topic] = []
-//        for topic in topics {
-//            if (!topic.thumbsUp && topic.readPercent == 0) {
-//                startReadingDisliked.append(topic)
-//            }
-//        }
-//        return startReadingDisliked
-//    }
     
     var body: some View {
         ZStack {
-            Color.tan
+            Color.tan // background colour
                 .edgesIgnoringSafeArea(.all)
             ScrollView {
                 VStack (alignment: .leading) {
-                    Text("Continue Reading")
+                    Text("Continue Reading") //continue reading heading
                         .bold()
                         .foregroundStyle(.darkGreen)
                     if (continueReading.isEmpty) {
-                        ErrorView(text: "You have not began reading anything.", tip: "Choose any topic and start reading!")
+                        ErrorView(text: "You have not began reading anything.", tip: "Choose any topic and start reading!") // if there are no topics that have not been partially read
                     } else {
                         ScrollView(.horizontal) {
                             HStack {
-                                ForEach(continueReading) { topic in
+                                ForEach(continueReading) { topic in // if there are topics that have been partially read
                                     NavigationLink {
-                                        TopicDetail(scrollPosition: topic.scrollPosition, topic: topic)
+                                        TopicDetail(topic: topic)
                                     } label: {
                                         SuggestedTopicCard(topic: topic)
                                             .padding(.trailing, 5)
@@ -109,20 +48,20 @@ struct SuggestedTopicsView: View {
                         }
                     }
                     
-                    Text("Start Reading Something You've Liked")
+                    Text("Start Reading Something You've Liked") // start reading liked heading
                         .bold()
                         .foregroundStyle(.darkGreen)
                         .padding(.top, 20)
-                    if (liked.isEmpty) {
-                        ErrorView(text: "You have not liked anything.", tip: "Start swiping right!")
+                    if (getLiked().isEmpty) {
+                        ErrorView(text: "You have not liked anything.", tip: "Start swiping right!") // if the user has not liked anything
                     } else if (startReadingLiked.isEmpty) {
-                        ErrorView(text: "You have read everything you've liked", tip: "Swipe right in Swipe mode or tap the thumb in Brain Bank to like more!")
+                        ErrorView(text: "You have read everything you've liked", tip: "Swipe right in Swipe mode or tap the thumb in Brain Bank to like more!") // if the user has liked topics, but has read all of the liked topics
                     } else {
                         ScrollView(.horizontal) {
                             HStack {
-                                ForEach(startReadingLiked) { topic in
+                                ForEach(startReadingLiked) { topic in // shows each of the topics which have been liked and started to have been read
                                     NavigationLink {
-                                        TopicDetail(scrollPosition: topic.scrollPosition, topic: topic)
+                                        TopicDetail(topic: topic)
                                     } label: {
                                         SuggestedTopicCard(topic: topic)
                                             .padding(.trailing, 5)
@@ -131,22 +70,22 @@ struct SuggestedTopicsView: View {
                             }
                         }
                     }
-                    Text("Consider Reading Something You've Disliked")
+                    Text("Consider Reading Something You've Disliked") // start reading disliked heading
                         .bold()
                         .foregroundStyle(.darkGreen)
                         .padding(.top, 20)
-                    if (disliked.isEmpty) {
+                    if (getDisliked().filter(getSwiped().contains).isEmpty ) { //if the user has not disliked anything
                         ErrorView(text: "You have not disliked anything.", tip: "That's fine! Keep reading what you like!")
                         
-                    } else if (startReadingDisliked.isEmpty) {
+                    } else if (startReadingDisliked.isEmpty) { // if the user has disliked things, but they have finished reading each of the disliked topics
                         ErrorView(text: "You read everything you have disliked", tip: "Did you really still dislike them?")
                         
                     } else {
                         ScrollView(.horizontal) {
                             HStack {
-                                ForEach(startReadingDisliked) { topic in
+                                ForEach(startReadingDisliked) { topic in // shows each of the disliked topics that they have not begun reading
                                     NavigationLink {
-                                        TopicDetail(scrollPosition: topic.scrollPosition, topic: topic)
+                                        TopicDetail(topic: topic)
                                     } label: {
                                         SuggestedTopicCard(topic: topic)
                                             .padding(.trailing, 5)
@@ -156,19 +95,19 @@ struct SuggestedTopicsView: View {
                         }
                     }
                     
-                    Text("Some Topics You May Not Have Seen")
+                    Text("Some Topics You May Not Have Seen") // unswiped topics
                         .bold()
                         .foregroundStyle(.darkGreen)
                         .padding(.top, 20)
-                    if (unswiped.isEmpty) {
+                    if (getUnswiped().isEmpty) { // if the user has swiped on all of the available topics
                         ErrorView(text: "You have seen everything!", tip: "Go to the Brain Bank to read them!")
                         
-                    } else {
+                    } else { // topics that the user has not swiped on
                         ScrollView(.horizontal) {
                             HStack {
-                                ForEach(unswiped) { topic in
+                                ForEach(getUnswiped()) { topic in
                                     NavigationLink {
-                                        TopicDetail(scrollPosition: topic.scrollPosition, topic: topic)
+                                        TopicDetail(topic: topic)
                                     } label: {
                                         SuggestedTopicCard(topic: topic)
                                             .padding(.trailing, 5)
@@ -183,9 +122,35 @@ struct SuggestedTopicsView: View {
         }
     
     }
+    
+    func getDisliked() -> [Topic] {
+        return topics.filter{!$0.thumbsUp} //any topic which has been disliked, including the initialised state
+    }
+    
+    func getSwiped() -> [Topic] {
+        return topics.filter {$0.beenSwiped} // any topic which has been swiped on
+    }
+    
+    func getUnswiped() -> [Topic] {
+        return topics.filter {!$0.beenSwiped} // any topic which has not been swiped on
+    }
+    
+    func getLiked() -> [Topic] {
+        return topics.filter{$0.thumbsUp} // any topic which has been liked by the user
+    }
+    
+    func getUnread() -> [Topic] {
+        return topics.filter{$0.readPercent == 0} // any topic which the user has not begun reading
+    }
+    
+    func getPartiallyRead() -> [Topic] {
+        return topics.filter{$0.readPercent > 0 && $0.readPercent < 100} // any topic which the user has started to read, but not completed
+    }
+    
+    
 }
 
 
-#Preview {
-    SuggestedTopicsView()
-}
+//#Preview {
+//    SuggestedTopicsView()
+//}

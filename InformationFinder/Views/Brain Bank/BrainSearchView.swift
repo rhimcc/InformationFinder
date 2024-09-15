@@ -6,32 +6,21 @@ struct BrainSearchView: View {
     @FocusState var searchActive
     @State var showingFilters = false
     @Query private var topics: [Topic]
-    @State private var selectedCategories: [String: Bool] = [:]
-    var categories: [String] {
-        var categories : [String] = []
-        for topic in topics {
-            if !categories.contains(topic.category) {
-                categories.append(topic.category)
-            }
-        }
-        return categories
-    }
-    
-
     
     var body: some View {
         VStack {
             HStack {
-                Image(systemName: "brain")
+                Image(systemName: "brain") // image
                     .tint(.darkGreen)
                     .font(.system(size: 25))
                     .padding(.leading, 10)
-                    TextField("Search...", text: $searchViewModel.searchQuery)
+                
+                    TextField("Search...", text: $searchViewModel.searchQuery) // search field, bound to the search query from the search view model
                     .padding([.top, .bottom, .trailing], 10)
                         .textFieldStyle(.roundedBorder)
-                        .focused($searchActive)
+                        .focused($searchActive) // sets the active status if the text field has been focused
                         .onChange(of: searchActive) { value in
-                            searchViewModel.isActive = value
+                            searchViewModel.isActive = value //sets the value of the searchViewModel 'isActive'
                         }
                     
                     if searchActive {
@@ -39,7 +28,7 @@ struct BrainSearchView: View {
                             searchActive = false
                         }
                         .padding(.trailing, 10)
-                    }
+                    } // allows the user to cancel the search and exit the search result view
                 }
           
             }

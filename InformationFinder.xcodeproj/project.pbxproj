@@ -186,6 +186,8 @@
 			children = (
 				9905AE272C70B2B40007FF69 /* InformationFinderApp.swift */,
 				9905AE292C70B2B40007FF69 /* ContentView.swift */,
+				9971E4FA2C92A3AB00BAD6F8 /* LottieView.swift */,
+				9971E5012C92AA0F00BAD6F8 /* ErrorView.swift */,
 				995F0F912C96B630008C065A /* Topics */,
 				9918974E2C7F4B41000D9EBB /* Home */,
 				9918974F2C7F4B55000D9EBB /* Brain Bank */,
@@ -221,8 +223,6 @@
 		991897502C7F4B74000D9EBB /* Swipe */ = {
 			isa = PBXGroup;
 			children = (
-				9971E5012C92AA0F00BAD6F8 /* ErrorView.swift */,
-				9971E4FA2C92A3AB00BAD6F8 /* LottieView.swift */,
 				9918973D2C7ED1C0000D9EBB /* SwipeView.swift */,
 			);
 			path = Swipe;

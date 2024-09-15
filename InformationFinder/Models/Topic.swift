@@ -21,18 +21,18 @@ class Topic: Decodable {
     var readPercent: Int
     var scrollPosition: Double
     
-    var wordCount: Int {
+    var wordCount: Int { //calculates the amount of words that are held in the topic info
         let components = self.topicInfo.components(separatedBy: .whitespacesAndNewlines)
         let wordCount = components.count
         return wordCount
     }
     
-    var calculatedTime: Int {
-        let time = (Double(wordCount) / 250.0).rounded()
+    var calculatedTime: Int { //calculates the approximate time to read the information, based on average reading times
+        let time = (Double(wordCount) / 230.0).rounded()
         return Int(time)
     }
     
-    init(topicName: String, topicDescription: String, topicInfo: String, category: String, imageURL: String, imageCredit: String){
+    init(topicName: String, topicDescription: String, topicInfo: String, category: String, imageURL: String, imageCredit: String){ // initalising all values for topics
         self.topicName = topicName
         self.topicDescription = topicDescription
         self.topicInfo = topicInfo
@@ -45,7 +45,7 @@ class Topic: Decodable {
         self.scrollPosition = 0.0
     }
     
-    required init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws { //initialises all of the variables for JSON decoding
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.topicName = try container.decode(String.self, forKey: .topicName)
             self.topicDescription = try container.decode(String.self, forKey: .topicDescription)
@@ -60,7 +60,7 @@ class Topic: Decodable {
 
         }
         
-        enum CodingKeys: String, CodingKey {
+        enum CodingKeys: String, CodingKey { //coding keys for the decoding of JSON objects
             case topicName
             case topicDescription
             case topicInfo

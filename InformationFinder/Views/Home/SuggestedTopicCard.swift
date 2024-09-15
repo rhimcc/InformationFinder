@@ -8,22 +8,21 @@ struct SuggestedTopicCard: View {
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 20) // background rectangle
                 .fill(.darkGreen)
                 .frame(width: cardWidth, height: cardHeight)
             
             VStack(spacing: 0) {
-                AsyncImage(url: URL(string: topic.imageURL)) { phase in
-                     if let image = phase.image {
-                         image.resizable()
-                     } else {
-                         LottieView(animationFileName: "AnimationTan", loopMode: .loop)
-                             .frame(width: cardWidth, height: cardWidth*2/3)
-                     }
-                 }
-               
+                AsyncImage(url: URL(string: topic.imageURL)) { phase in // image from URL
+                    if let image = phase.image {
+                        image.resizable()
+                    } else {
+                        LottieView(animationFileName: "AnimationTan", loopMode: .loop) // animation for loading
+                            .frame(width: cardWidth, height: cardWidth*2/3)
+                    }
+                }
                 
-                Text(topic.topicName)
+                Text(topic.topicName) // topic name
                     .foregroundColor(.tan)
                     .lineLimit(2)
                     .minimumScaleFactor(0.5)
@@ -35,11 +34,11 @@ struct SuggestedTopicCard: View {
                     .padding(.top, 10)
                 Spacer()
                 HStack {
-                    if (!topic.beenSwiped) {
+                    if (!topic.beenSwiped) { // icon if the topic has not been swiped on
                         Image(systemName: "minus.circle")
                             .foregroundColor(.tan)
                             .padding(.leading, 10)
-                    } else {
+                    } else { // icon if the topic has been swiped on, depending on if its been thumbsed up or down
                         Image(systemName: topic.thumbsUp ? "hand.thumbsup.fill" : "hand.thumbsdown.fill")
                             .foregroundColor(.tan)
                             .padding(.leading, 10)
@@ -47,7 +46,7 @@ struct SuggestedTopicCard: View {
                     
 
                     Spacer()
-                    Text("\(topic.readPercent)%")
+                    Text("\(topic.readPercent)%") // read percent of topic
                         .bold()
                         .foregroundColor(.white)
                         .padding(.trailing, 10)

@@ -11,7 +11,7 @@ struct FilterBubble: View {
     var filterName: String
     var isSelected: Bool
     var body: some View {
-        if (filterName == "Thumbs Up") {
+        if (filterName == "Thumbs Up") { // only the thumbs up icon
             Image(systemName: "hand.thumbsup.fill")
                 .tint(isSelected ? .darkTan : .darkGreen)
                 .padding(.vertical, 5)
@@ -20,7 +20,7 @@ struct FilterBubble: View {
                     .fill(isSelected ? .darkGreen : .darkTan))
 
 
-        } else if (filterName == "Thumbs Down") {
+        } else if (filterName == "Thumbs Down") { // only the thumbs down icon
             Image(systemName: "hand.thumbsdown.fill")
                 .tint(isSelected ? .darkTan : .darkGreen)
                 .padding(.vertical, 5)
@@ -29,7 +29,7 @@ struct FilterBubble: View {
                     .fill(isSelected ? .darkGreen : .darkTan))
 
         } else {
-            Text(filterName)
+            Text(filterName) // shows the filter name
                 .foregroundColor(isSelected ? .darkTan : .darkGreen)
                 .font(.system(size: 15))
                 .bold()
@@ -41,6 +41,6 @@ struct FilterBubble: View {
     }
 }
 
-#Preview {
-    FilterBubble(filterName: "Read", isSelected: true)
-}
+//#Preview {
+//    FilterBubble(filterName: "Read", isSelected: true)
+//}

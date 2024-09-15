@@ -13,16 +13,16 @@ struct BrainSearchResults: View {
     @Query private var topics: [Topic]
         var filteredTopics: [Topic] {
         if searchViewModel.searchQuery.isEmpty {
-            return Array(topics.filter {$0.beenSwiped})
+            return Array(topics.filter {$0.beenSwiped}) // shows all topics which have been swiped on
           } else {
-              return topics.filter { $0.topicName.localizedCaseInsensitiveContains(searchViewModel.searchQuery) && $0.beenSwiped}
+              return topics.filter { $0.topicName.localizedCaseInsensitiveContains(searchViewModel.searchQuery) && $0.beenSwiped} // shows all topics which have been swiped and match the search
           }
       }
     
     var body: some View {
         NavigationStack {
             if (filteredTopics.isEmpty) {
-                VStack (alignment: .center){
+                VStack (alignment: .center){ // message shown if there is no match for the user's search
                     Image(systemName: "brain")
                         .font(.system(size: 70))
                         .padding(30)
@@ -40,11 +40,11 @@ struct BrainSearchResults: View {
                 .position(x: UIScreen.main.bounds.width/2, y: 300)
             } else {
                 ScrollView {
-                    ForEach(Array(filteredTopics.enumerated()), id: \.element) { index, topic in
+                    ForEach(Array(filteredTopics.enumerated()), id: \.element) { index, topic in //shows each of the search results which match the search query
                         NavigationLink {
-                            TopicDetail(scrollPosition: topic.scrollPosition, topic: topic)
+                            TopicDetail(topic: topic)
                         } label : {
-                            TopicRow(topic: topic, colour: index % 2 == 0 ? .midGreen : .lightGreen)
+                            TopicRow(topic: topic, colour: index % 2 == 0 ? .midGreen : .lightGreen) // alternates the colour of the rows for results
                                 .padding([.top, .leading, .trailing], 20)
                         }
                         

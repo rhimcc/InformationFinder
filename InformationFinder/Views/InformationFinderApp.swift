@@ -14,7 +14,7 @@ struct InformationFinderApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Topic.self)
+        .modelContainer(for: Topic.self) // creates container for persistent data
 
     }
 }

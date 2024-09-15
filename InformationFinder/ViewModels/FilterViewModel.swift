@@ -44,28 +44,24 @@ class FilterViewModel: ObservableObject {
         
         filteredTopics = topics.filter { topic in
             let swipeStatusMatch: Bool
-            if topic.beenSwiped {
-                swipeStatusMatch = true
-            } else {
-                swipeStatusMatch = false
-            }
+            swipeStatusMatch = topic.beenSwiped // filtered topics shows only topics which have been swiped
             
             let categoryMatch: Bool
             if selectedCategoryFilters.isEmpty {
-                categoryMatch = true
+                categoryMatch = true //if there is no category filter selected, it will show all categories
             } else {
                 categoryMatch = selectedCategoryFilters.contains(topic.category)
             }
             
             let readStatusMatch: Bool
-            if selectedReadFilters.isEmpty {
+            if selectedReadFilters.isEmpty { //if there is no read filter selected, it will show all read options
                     readStatusMatch = true
             } else {
-                if selectedReadFilters.contains("Read"), topic.readPercent == 100 {
+                if selectedReadFilters.contains("Read"), topic.readPercent == 100 { //if read filter is active and the topic has been read, it'll match
                     readStatusMatch = true
-                } else if selectedReadFilters.contains("Unread"), topic.readPercent == 0 {
+                } else if selectedReadFilters.contains("Unread"), topic.readPercent == 0 { //if unread filter is active and the topic has not been read, it'll match
                     readStatusMatch = true
-                } else if selectedReadFilters.contains("Reading"), topic.readPercent > 0 && topic.readPercent < 100 {
+                } else if selectedReadFilters.contains("Reading"), topic.readPercent > 0 && topic.readPercent < 100 { //if reading filter is active and the topic has been read some, but not 100%, it'll match
                     readStatusMatch = true
                 } else {
                     readStatusMatch = false
@@ -73,27 +69,27 @@ class FilterViewModel: ObservableObject {
             }
             
             let thumbsStatusMatch: Bool
-            if selectedThumbsFilters.isEmpty {
+            if selectedThumbsFilters.isEmpty { //if there is no thumb filter selected, it will show all thumb options
                 thumbsStatusMatch = true
             } else {
-                if selectedThumbsFilters.contains("Thumbs Up"), topic.thumbsUp {
+                if selectedThumbsFilters.contains("Thumbs Up"), topic.thumbsUp { // if the thumbs up filter is active and the topic has been thumbsed up, it'll match
                     thumbsStatusMatch = true
-                } else if selectedThumbsFilters.contains("Thumbs Down"), !topic.thumbsUp {
+                } else if selectedThumbsFilters.contains("Thumbs Down"), !topic.thumbsUp {  // if the thumbs down filter is active and the topic has been thumbsed down, it'll match
                     thumbsStatusMatch = true
                 } else {
                     thumbsStatusMatch = false
                 }
             }
 
-            return (categoryMatch && readStatusMatch && thumbsStatusMatch) && swipeStatusMatch
+            return (categoryMatch && readStatusMatch && thumbsStatusMatch) && swipeStatusMatch //will add the topic to the filtered topics list if the category, read status, thumb status has been matched with the active filters, and if the topic has been swiped.
         }
         
     }
     
     func checkNoneSelected() -> Bool {
-        if readOptions.values.contains(true) || thumbsOptions.values.contains(true) || selectedCategories.values.contains(true) {
-            return false
+        if readOptions.values.contains(true) || thumbsOptions.values.contains(true) || selectedCategories.values.contains(true) { //if any of the filters are active
+            return false //returns false to the fact that none are selected
         }
-        return true
+        return true // returns true that no filters have been selected
     }
 }

@@ -8,14 +8,13 @@ struct BrainBankView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                
-                BrainSearchView(searchViewModel: searchViewModel)
+                BrainSearchView(searchViewModel: searchViewModel) // always shown, just the search bar
                 
                 if (searchViewModel.isActive) {
-                    BrainSearchResults(searchViewModel: searchViewModel)
+                    BrainSearchResults(searchViewModel: searchViewModel) // shows search results, when the user has clicked the search bar
                     
                 } else {
-                    ListBaseView()
+                    ListBaseView() // otherwise shows the list with the filter bubbles
                 }
             }.background(.tan)
         }

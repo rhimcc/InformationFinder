@@ -12,13 +12,13 @@ struct SearchBaseView: View {
     @StateObject private var searchViewModel: SearchViewModel = SearchViewModel()
     var body: some View {
         NavigationStack {
-            SearchView(searchViewModel: searchViewModel)
+            SearchView(searchViewModel: searchViewModel) // always shows the search view (just search bar)
 
             if (searchViewModel.isActive) {
-                SearchResultsView(searchViewModel: searchViewModel)
+                SearchResultsView(searchViewModel: searchViewModel) // shows the results of the search if its active
 
             } else {
-                SuggestedTopicsView()
+                SuggestedTopicsView() // shows the suggested topics if the search isnt active
             }
         }
     

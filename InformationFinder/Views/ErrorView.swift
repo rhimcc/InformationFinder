@@ -13,25 +13,23 @@ struct ErrorView: View {
     var tip: String
     var body: some View {
         ZStack {
-        
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 20) // background rectangle
                 .fill(.darkGreen)
                 .frame(width: UIScreen.main.bounds.width - 20, height: cardHeight, alignment: .center)
-            
             HStack {
-                Image(systemName: "brain")
+                Image(systemName: "brain") // image
                     .font(.system(size: 30))
                     .foregroundColor(.white)
                 VStack (alignment: .leading) {
-                    Text(text)
+                    Text(text) // text with key problem
                         .bold()
                         .foregroundColor(.white)
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
-                    Text(tip)
+                    Text(tip) // text with advice for how to resolve the problem
                         .foregroundColor(.white)
                         .lineLimit(2)
-                        .minimumScaleFactor(0.5) // Shrinks text if needed
+                        .minimumScaleFactor(0.5)
                         .multilineTextAlignment(.leading)
                     
                 }

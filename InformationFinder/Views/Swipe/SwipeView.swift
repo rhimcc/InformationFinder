@@ -81,6 +81,7 @@ struct SwipeView: View {
                     Text("Look at your brain bank to view all topics after you swipe on them!")
                         .bold()
                         .font(.system(size: 15))
+                    
                 }    .foregroundColor(.darkGreen)
                     .frame(width: 300, height: 500, alignment: .center)
                     .multilineTextAlignment(.center)
@@ -125,9 +126,6 @@ struct SwipeView: View {
                 ZStack {
                     Spacer()
                     if (!helpPopUp) {
-                    
-
-      
                         ForEach(unswipedTopics) { topic in
                             TopicCard(topicViewModel: topicViewModel, cardIndex: topicViewModel.getIndexOfTopic(topic: topic) ?? 0, cardPosition: $cardPosition)
                                 .frame(width: 300, height: 500)
@@ -148,18 +146,20 @@ struct SwipeView: View {
                                 Text("Look at the brain bank\n to get learning!")
                                     .bold()
                                     .font(.system(size: 15))
-                            }
-                            .foregroundColor(.white)
-                            .frame(width: 300, height: 500, alignment: .center)
+                                
+                            }.foregroundStyle(.tan)
                             .multilineTextAlignment(.center)
-                            
-                            .background(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .fill(.darkGreen)
-                                    .aspectRatio(CGSize(width: 9, height: 16), contentMode: .fit)
-                                    .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
-                            )
-                            
+                            .frame(width: 300, height: 500)
+                                .position(x: cardPosition, y: 300)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .fill(.darkGreen)
+                                        .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
+                                        .frame(width: 300, height: 500)
+                                        .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
+
+
+                                )
                         }
                     }
                 }

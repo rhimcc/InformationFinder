@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchResultsView: View {
     var body: some View {
-        Text("Hello, World!")
+       Text("yey")
     }
 }
 

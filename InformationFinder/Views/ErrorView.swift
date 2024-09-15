@@ -33,9 +33,8 @@ struct ErrorView: View {
                         .multilineTextAlignment(.leading)
                     
                 }
-         
-                
-            }
+            }.frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 10)
         }
         
     

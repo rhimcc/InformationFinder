@@ -15,7 +15,7 @@ struct SearchBaseView: View {
             SearchView(searchViewModel: searchViewModel)
 
             if (searchViewModel.isActive) {
-                SearchResultsView()
+                SearchResultsView(searchViewModel: searchViewModel)
 
             } else {
                 SuggestedTopicsView()

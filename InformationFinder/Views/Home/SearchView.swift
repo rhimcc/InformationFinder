@@ -12,10 +12,14 @@ struct SearchView: View {
     @ObservedObject var searchViewModel : SearchViewModel
     var body: some View {
         NavigationStack {
+//            ZStack {
+//                Color.tan
+//                    .edgesIgnoringSafeArea(.all)
+//            }
             
             VStack {
             }
-            .searchable(text: $searchQuery, prompt: "Search...")
+            .searchable(text: $searchViewModel.searchQuery, isPresented: $searchViewModel.isActive, prompt: "Search...")
             
             
         }

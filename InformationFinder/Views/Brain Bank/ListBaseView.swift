@@ -12,12 +12,17 @@ struct ListBaseView: View {
     @State private var falseCounter: Int = 0
     @State private var errorMessage: String? = nil
     @State private var selectedCount: Int = 0
-    
+//    @State private var allSelected: Bool = true
     
     var body: some View {
         VStack {
             ScrollView(.horizontal) {
                 HStack {
+                    Button {
+                       setAllTrue()
+                    } label: {
+                        FilterBubble(filterName: "ALL", isSelected: filterViewModel.checkAllSelected())
+                    }
                     ForEach(Array(filterViewModel.thumbsOptions.keys), id: \.self) { option in
                         Button {
                             errorMessage = filterViewModel.toggleOption(for: &filterViewModel.thumbsOptions, option: option)
@@ -86,6 +91,18 @@ struct ListBaseView: View {
         .onAppear {
             filterViewModel.topics = topics
             filterViewModel.applyFilters()
+        }
+    }
+    
+    func setAllTrue() {
+        for option in filterViewModel.readOptions.keys {
+            filterViewModel.readOptions[option] = true
+        }
+        for option in filterViewModel.thumbsOptions.keys {
+            filterViewModel.thumbsOptions[option] = true
+        }
+        for option in filterViewModel.selectedCategories.keys {
+            filterViewModel.selectedCategories[option] = true
         }
     }
 }

@@ -17,6 +17,7 @@ class FilterViewModel: ObservableObject {
     @Published var thumbsOptions: [String: Bool] = ["Thumbs Up": true, "Thumbs Down": true] {
         didSet {
             applyFilters()
+
         }
     }
     
@@ -28,6 +29,7 @@ class FilterViewModel: ObservableObject {
     
     @Published var filteredTopics: [Topic] = []
     var topics: [Topic] = []
+    var allSelected = true
     
     func applyFilters() {
         let selectedCategoryFilters = selectedCategories.filter { $0.value }.map { $0.key }
@@ -93,5 +95,12 @@ class FilterViewModel: ObservableObject {
             options[option]?.toggle()
             return nil
         }
+    }
+    
+    func checkAllSelected() -> Bool {
+        if readOptions.values.contains(false) || thumbsOptions.values.contains(false) || selectedCategories.values.contains(false) {
+            return false
+        }
+        return true
     }
 }
